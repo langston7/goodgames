@@ -1,6 +1,7 @@
 const loginUser = (req, res, user)=>{
-    req.session.auth = { userId: user.id,
+    req.session.auth = {
+        userId: user.id,
     }
 }
 
-module.export = loginUser;
+module.exports = { loginUser }

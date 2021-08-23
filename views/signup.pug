@@ -1,7 +1,7 @@
 extends layout.pug
 
 block content
-  form(action="/login" method="post")
+  form(action="/signup" method="post")
     if errors
       div(role='alert')
         p The Following errors occurred:
@@ -11,6 +11,10 @@ block content
     input(type="hidden" name="_csrf" value=csrfToken)
     label(for="username") Username
     input(type="text" name="username" value=user.username)
+    label(for="firstName") First Name
+    input(type="text" name="firstName" value=user.firstName)
+    label(for="lastName") Last Name
+    input(type="text" name="lastName" value=user.lastName)
     label(for="password") Password
     input(type="password" name="password")
-    button Submit
+    button Sign Up
