@@ -1,16 +1,16 @@
 extends layout.pug
 
-block content   
+block content
   form(action="/login" method="post")
     if errors
       div(role='alert')
         p The Following errors occurred:
-        ul 
-          each error in errors 
+        ul
+          each error in errors
             li= error
     input(type="hidden" name="_csrf" value=csrfToken)
     label(for="username") Username
-    input(type="text" name="username" value=user.username required)
+    input(type="text" name="username" value=user.username)
     label(for="password") Password
-    input(type="password" name="password" required)
+    input(type="password" name="password")
     button Submit

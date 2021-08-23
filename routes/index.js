@@ -6,8 +6,6 @@ const loginUser = require('../auth');
 const bcrypt = require('bcryptjs')
 const { csrfProtection, asyncHandler } = require('../utils');
 
-
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'a/A Express Skeleton Home' });
@@ -27,16 +25,16 @@ const loginValidators = [
     .withMessage('Please provide a Password')
 ]
 
-router.post('/login', csrfProtection, loginValidators, asyncHandler, (async (req,res) =>{
+router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req,res) =>{
   const { username } = req.body;
   const { password } = req.body;
   const user = await User.build()
-  user.username =  username 
-  const errors = []
+  user.username =  username
+  let errors = []
   const validatorErrors = validationResult(req);
 
     if (validatorErrors.isEmpty()) {
-        const user = await User.findone({ where: {username} })
+        const user = await User.findOne({ where: {username} })
         if(user){
           const passwordMatch = await bcrypt.compare(password, user.hashedPassword)
           if(passwordMatch){
