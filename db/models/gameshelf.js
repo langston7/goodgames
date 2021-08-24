@@ -5,7 +5,13 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER
   }, {});
   GameShelf.associate = function(models) {
-    // associations can be defined here
+    GameShelf.belongsTo(models.User, {foreignKey: 'userId'});
+    const columnMapping = {
+      through: 'GamesToGameShelf',
+      otherKey: 'gameId',
+      foreignKey: 'gameShelfId'
+    }
+    GameShelf.belongsToMany(models.Game, columnMapping);
   };
   return GameShelf;
 };

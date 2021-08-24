@@ -8,7 +8,13 @@ module.exports = (sequelize, DataTypes) => {
     imgURL: DataTypes.STRING
   }, {});
   Game.associate = function(models) {
-    // associations can be defined here
+    Game.hasMany(models.Review, {foreignKey: "gameId"});
+    const columnMapping = {
+      through: 'GamesToGameShelf',
+      otherKey: 'gameShelfId',
+      foreignKey: 'gameId'
+    }
+    Game.belongsToMany(models.GameShelf, columnMapping)
   };
   return Game;
 };
