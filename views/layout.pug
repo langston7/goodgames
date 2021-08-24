@@ -5,6 +5,7 @@ html
         title="Express Starter App"
         link(rel='stylesheet' href='/stylesheets/reset.css')
         link(rel="stylesheet" href="/stylesheets/index.css")
+        script(src="/javascripts") 
   body
     div.nav-container
       div.content-container
@@ -21,7 +22,8 @@ html
           if authenticated
             a(href="/profile" class="user-link") Profile
             h1(class="user-link divider") |
-            a(href="/logout" class="user-link") Log Out
+            form(action="/logout" method="post") 
+              button(class="user-link logout") Log Out
           else
             a(href="/login" class="user-link") Login
             h1(class="user-link divider") |
