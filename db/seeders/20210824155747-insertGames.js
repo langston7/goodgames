@@ -4,13 +4,13 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
       return queryInterface.bulkInsert('Games', [
       {name: 'Xenoblade Chronicles 2', description:'Search for the ultimate paradise, Elysium, with your companion Pyra. Explore an endless ocean of clouds', developer:'Monolith Soft', releaseDate:'2017-12-01', imgURL:'https://upload.wikimedia.org/wikipedia/en/4/4a/Xenoblade_Chronicles_2.jpg'},
-      {name: '', description:'', developer:'', releaseDate:'', imgURL:''},
-      {name: '', description:'', developer:'', releaseDate:'', imgURL:''},
-      {name: '', description:'', developer:'', releaseDate:'', imgURL:''},
-      {name: '', description:'', developer:'', releaseDate:'', imgURL:''},
-      {name: '', description:'', developer:'', releaseDate:'', imgURL:''},
-      {name: '', description:'', developer:'', releaseDate:'', imgURL:''},
-      {name: '', description:'', developer:'', releaseDate:'', imgURL:''},
+      {name: 'Super Smash Bros. Ultimate', description:'Super Smash Bros. Ultimate is a fighting game for up to eight players in which characters from Nintendo games and other third-party franchises must try to knock each other out of an arena. Each player has a percentage meter, which raises when they take damage, making them easier to launch in the air and out of the arena. Standard battles use one of three victory conditions: Timed, where players aim to win the most points by defeating opponents within a time limit; Stock, where players have a set number of lives and must aim to be the last player standing; and Stamina, where players must simply reduce their opponent\'s health down to zero to defeat them. Players can adjust the rules to their liking and save them as presets for future matches.', developer:'Bandai Namco Studios, Sora Ltd.', releaseDate:'2018-12-07', imgURL:'https://upload.wikimedia.org/wikipedia/en/5/50/Super_Smash_Bros._Ultimate.jpg'},
+      {name: 'Monster Hunter Rise', description:'Monster Hunter Rise has the player take the role of a Hunter, tasked with slaying or capturing large monsters using a variety of weapons, tools, and environmental features to damage and weaken them while surviving their attacks. Successful completion of the offered quests provides loot, typically in the form of various monster parts from the monster, which are used to forge new armor and weapons that can be used to take on more powerful monsters, forming the series\' notable core loop.', developer:'Capcom', releaseDate:'2021-03-26', imgURL:'https://upload.wikimedia.org/wikipedia/en/4/41/Monster_hunter_rise_cover.jpg'},
+      {name: 'Fire Emblem: Three Houses', description:'Fire Emblem: Three Houses is a tactical role-playing game in which players control a player character whose gender and name are chosen at the beginning of the game. During the opening hours, the player character is asked to teach at the Garreg Mach Monastery, which acts as a hub for game activities. Choosing a particular house to teach impacts the narrative from that point on. The player\'s time is divided between story-based battles that advance the main narrative, and periods in Garreg Mach where they interact with students and staff members there. While the opening half of the game focuses on this school system, the story skips ahead five years and focuses more on battle, with the player being locked to the house they chose during the opening half.', developer:'Intelligent Systems, Koei Tecmo', releaseDate:'2019-07-26', imgURL:'https://upload.wikimedia.org/wikipedia/en/1/16/Fire_Emblem_Three_Houses.jpg'},
+      {name: 'Astral Chain', description:'Set in a dystopian future Earth, the game follows the events of a special police task force that protect remnants of humanity from interdimensional creatures and aberrations that invade the planet, with the story centering on the task force\'s two new twin recruits. Utilizing the titular Astral Chain, the twins restrain and tether the creatures, employing them in combat and investigation, referring to them as Legions.', developer:'Platinum Games', releaseDate:'2019-08-30', imgURL:'https://upload.wikimedia.org/wikipedia/en/6/67/Astral_Chain.jpg'},
+      {name: 'Nier: Automata', description:'Nier: Automata is an action role-playing game (RPG) in which players take the role of combat androids from the YoRHa units across an open world. In addition to standard navigation on foot, using a special item allows the player to summon a wild animal to ride, and in some scenarios pilot a flying mech to fight enemies.', developer:'Platinum Games', releaseDate:'2017-03-07', imgURL:'https://upload.wikimedia.org/wikipedia/en/2/21/Nier_Automata_cover_art.jpg'},
+      {name: 'Dragon Quest XI S: Echoes of an Elusive Age - Definitive Edition', description:'The game is set in the world of Erdrea, and begins as the kingdom of Dundrasil is invaded and destroyed by an army of monsters. The protagonist, an infant during the attack, survives and is found floating down a river by an old man named Chalky in the village of Cobblestone. The protagonist is adopted by Chalky\'s daughter Amber and raised in the village. After the protagonist\'s coming-of-age ceremony, Amber reveals the truth to him about his birth and adoption, and sends him to meet King Carnelian of Heliodor. However, the king accuses him of being an evil entity and throws him into the dungeons.', developer:'Square Enix', releaseDate:'2019-09-27', imgURL:'https://upload.wikimedia.org/wikipedia/en/4/4c/Dragon_Quest_XI_cover_art.jpg'},
+      {name: 'The Legend of Zelda: Breath of the Wild', description:'Breath of the Wild is an action-adventure game set in an open world where players are tasked with exploring the kingdom of Hyrule while controlling Link. Breath of the Wild encourages nonlinear gameplay, which is illustrated by the game\'s lack of defined entrances or exits to areas, scant instruction given to the player, and encouragement to explore freely.', developer:'Nintendo', releaseDate:'2017-03-03', imgURL:'https://upload.wikimedia.org/wikipedia/en/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg'},
       {name: '', description:'', developer:'', releaseDate:'', imgURL:''},
       {name: '', description:'', developer:'', releaseDate:'', imgURL:''},
       {name: '', description:'', developer:'', releaseDate:'', imgURL:''},
@@ -20,11 +20,11 @@ module.exports = {
       {name: '', description:'', developer:'', releaseDate:'', imgURL:''},
       {name: '', description:'', developer:'', releaseDate:'', imgURL:''},
       ], {});
-    
+
   },
 
   down: (queryInterface, Sequelize) => {
       return queryInterface.bulkDelete('Games', null, {});
-    
+
   }
 };
