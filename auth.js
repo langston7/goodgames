@@ -23,4 +23,8 @@ const restoreUser = asyncHandler(async(req, res, next) => {
     next();
 });
 
-module.exports = { loginUser, restoreUser }
+const logoutUser = (req, res) => {
+    delete req.session.auth;
+}
+
+module.exports = { loginUser, restoreUser, logoutUser }

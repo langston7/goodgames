@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { User } = require('../db/models')
 const { check, validationResult } = require('express-validator');
-const { loginUser } = require('../auth');
+const { loginUser, logoutUser } = require('../auth');
 const bcrypt = require('bcryptjs')
 const { csrfProtection, asyncHandler } = require('../utils');
 
@@ -37,7 +37,7 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req,r
   const { password } = req.body;
   const user = await User.build()
   user.username = username;
-  let errors = []
+  let errors = [];
   const validatorErrors = validationResult(req);
 
     if (validatorErrors.isEmpty()) {
@@ -45,8 +45,8 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req,r
       if(user){
         const passwordMatch = await bcrypt.compare(password, user.hashedPassword)
         if(passwordMatch){
-          loginUser(req, res, user)
-          return res.redirect('/')
+          loginUser(req, res, user);
+          return res.redirect('/');
         }
       }
       errors.push('login failed')
@@ -100,7 +100,7 @@ router.post('/signup', csrfProtection, signUpValidators, asyncHandler(async (req
   if(validatorErrors.isEmpty()){
     const hashedPassword = await bcrypt.hash(password, 10);
     await User.create({username, firstName, lastName, hashedPassword});
-    return res.redirect('/');
+    return res.redirect('/login');
   } else {
     errors = validatorErrors.array().map((error) => error.msg);
   }
@@ -110,6 +110,11 @@ router.post('/signup', csrfProtection, signUpValidators, asyncHandler(async (req
     csrfToken: req.csrfToken()
   });
 }));
+
+router.post('/logout', (req, res) => {
+  logoutUser(req);
+  res.redirect('/');
+})
 
 
 module.exports = router;
