@@ -1,19 +1,25 @@
 extends layout.pug
+append head
+  link(rel="stylesheet", href="/stylesheets/login.css")
 
 block content
   if authenticated
     div Already logged in.
   else
-    form(action="/login" method="post")
-      if errors
-        div(role='alert')
-          p The Following errors occurred:
-          ul
-            each error in errors
-              li= error
-      input(type="hidden" name="_csrf" value=csrfToken)
-      label(for="username") Username
-      input(type="text" name="username" value=user.username)
-      label(for="password") Password
-      input(type="password" name="password")
-      button Submit
+    div(class="login-container")
+      form(action="/login" method="post" class="login-form")
+        if errors
+          div(role='alert')
+            p The Following errors occurred:
+            ul
+              each error in errors
+                li= error
+        h2(class="login-item login-header") Sign In to Goodgames
+        input(type="hidden" name="_csrf" value=csrfToken)
+        label(class="login-item login-label" for="username") Username
+        input(class="login-item" type="text" name="username" value=user.username)
+        label(class="login-item login-label" for="password") Password
+        input(class="login-item" type="password" name="password")
+        button(class="login-item login-button") Sign in
+        span(class="login-item login-label") Not a Member?
+          a(class="login-item" href="/signup") Sign up

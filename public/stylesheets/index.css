@@ -2,14 +2,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&family=Ramabhadra&display=swap');
 
 body {
-    background-color: rgba(26, 34, 34, 0.527);
+    background-color:#7D8CA3;
 }
 
 .body-content {
     max-width: 1220px;
     height: 100vh;
     margin: 0 auto;
-    background-color: white;
+    background-color:#7D8CA3;
+}
+
+a:not(.nav-container a){
+    text-decoration: none;
+    color: #00635D;
 }
 
 .logo-container {
@@ -21,7 +26,7 @@ body {
 .nav-container {
     height: 75px;
     width: 100%;
-    background-color: #EEEEEE;
+    background-color: #eeeeee;
 }
 
 .content-container {
