@@ -58,6 +58,10 @@ body {
     width: 80%;
 }
 
+.search-bar:focus {
+    outline: none;
+}
+
 .search-bar::placeholder {
     font-family: 'Ramabhadra', sans-serif;
     font-size: 14px;
