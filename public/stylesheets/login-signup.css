@@ -65,3 +65,16 @@ span{
 a[class="login-item"]{
   display:inline-block;
 }
+
+.guest-button {
+  border: none;
+  text-decoration: none;
+  color: #00635D;
+  background-color: #f3f3f3;
+  position: relative;
+  left: 10px;
+}
+
+.guest-button:hover {
+  cursor: pointer;
+}
