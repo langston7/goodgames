@@ -127,5 +127,18 @@ router.post('/logout', (req, res, next) => {
   });
 });
 
+router.post('/guest', asyncHandler(async(req, res) => {
+  const guestUser = await User.findOne({
+    where: { username: 'guest' }
+  });
+  loginUser(req, res, guestUser);
+  return req.session.save(error => {
+    if(error){
+      next(error);
+    }else{
+      return res.redirect('/');
+    }
+  });
+}))
 
 module.exports = router;

@@ -1,6 +1,6 @@
 extends layout.pug
 append head
-  link(rel="stylesheet", href="/stylesheets/login.css")
+  link(rel="stylesheet", href="/stylesheets/login-signup.css")
 
 block content
   if authenticated
@@ -23,3 +23,5 @@ block content
         button(class="login-item login-button") Sign in
         span(class="login-item login-label") Not a Member?
           a(class="login-item" href="/signup") Sign up
+          form(action="/guest" method="post") 
+            button(formaction="/guest" class="login-label login-item guest-button") Continue as guest
