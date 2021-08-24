@@ -46,7 +46,13 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req,r
         const passwordMatch = await bcrypt.compare(password, user.hashedPassword)
         if(passwordMatch){
           loginUser(req, res, user);
-          return res.redirect('/');
+          return req.session.save(error => {
+            if(error){
+              next(error);
+            }else{
+              return res.redirect('/');
+            }
+          });
         }
       }
       errors.push('login failed')
@@ -111,10 +117,16 @@ router.post('/signup', csrfProtection, signUpValidators, asyncHandler(async (req
   });
 }));
 
-router.post('/logout', (req, res) => {
+router.post('/logout', (req, res, next) => {
   logoutUser(req);
-  res.redirect('/');
-})
+  return req.session.save(error => {
+    if(error){
+      next(error);
+    }else{
+      return res.redirect('/');
+    }
+  });
+});
 
 
 module.exports = router;

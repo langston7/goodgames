@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&family=Ramabhadra&display=swap');
+
+.login-container{
+  display:flex;
+  flex-direction: column;
+  width: 520px;
+  margin: 0 auto;
+  box-shadow: 0 1px 1px #D0D0C8;
+  border-radius:6px;
+  padding: 20px;
+  padding-right: 40px;
+  padding-left: 40px;
+  position: relative;
+  top: 30px;
+  background-color: #f3f3f3;
+}
+
+.login-form{
+  display:flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.login-item{
+  padding: 10px;
+  margin: 10px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  font-family: 'Ramabhadra', sans-serif;
+}
+
+.login-button{
+  border-radius: 28px;
+  border: none;
+  background-color: rgb(255, 105, 51);
+  /* background-color: #79A9D1; */
+  width:50%;
+  color:white;
+  margin-top: 20px;
+}
+
+.login-header{
+  text-align: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.login-label{
+  padding: 0px;
+  margin-bottom: 0px;
+}
+
+span{
+  width:fit-content;
+}
+
+a[class="login-item"]{
+  display:inline-block;
+}
