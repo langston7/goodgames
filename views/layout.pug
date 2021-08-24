@@ -4,5 +4,24 @@ html
       block head
         title="Express Starter App"
         link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel="stylesheet" href="/stylesheets/index.css")
   body
-    block content
+    
+    div.nav-container
+      div.content-container
+        a(href="/"): div.logo-container
+        div.search-container
+          form(action="" method="post" class="search-form") 
+            input(type="search" name="search" placeholder="Search games" class="search-bar")
+            button.search-icon
+        div.nav-link-container
+          if authenticated
+            a(href="/gameshelves" class="nav-link") Gameshelves
+          a(href="/games" class="nav-link") Games
+        div.user-container
+          a(href="/login" class="user-link") Login
+          h1(class="user-link divider") |
+          a(href="/signup" class="user-link") Register
+    
+    div.body-content
+      block content
