@@ -4,13 +4,89 @@
   align-items: center;
 }
 
-body{
+/* body{
   display: flex;
   align-items: center;
   flex-direction: column;
+} */
+
+.container-review-div {
+  display: flex;
+  flex-direction: column;
+  border: solid red;
+  width: 700px;
+  margin: 0 auto;
+  box-shadow: 0 3px 3px #D0D0C8;
+  border-radius: 5px;
+  padding: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: relative;
+  top: 30px;
+  background-color: #f3f3f3;
 }
 
-.game-img-review{
+.review-form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.game-title-header-route {
+  padding: 10px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family:'Rajdhani', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  
+}
+
+.game-title-developer-div {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.game-title, .developer {
+  padding: 5px;
+  /* margin: 10px; */
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.game-img-review {
   max-width: 300px;
   max-height: 300px;
 }
+
+.text-review-box {
+  resize: none;
+  width: 200px;
+  height: 100px;
+}
+
+.review-submit {
+  border-radius: 30px;
+  border: none;
+  background-color: rgb(255, 105, 51);
+}
+
+
+/* .game-title-header-route {
+  display: flex;
+  align-items: center;
+} */
+
+/* .game-img-review {
+  max-width: 300px;
+  max-height: 300px;
+  border: solid blue;
+  padding: 15px;
+  align-self: flex-start;
+}
+
+.game-title {
+  border:solid yellow;
+} */
