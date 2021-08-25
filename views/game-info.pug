@@ -5,8 +5,8 @@ block content
         div(class="game-info-container")
             div(class="game-info-div-1")
                 h2(class='game-info-header') #{game.name}
-                span(class='developer') #{game.developer}
-                span(class='releaseDate') #{game.releaseDate}
+                span(class='developer') By #{game.developer}
+                span(class='releaseDate') Release Date: #{game.releaseDate}
                 p(class='game-info-description') #{game.description}
                 img(class='gameImage-info' src= game.imgURL)
                 button(class='add-to-game-shelf')
