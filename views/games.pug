@@ -2,9 +2,4 @@ extends layout
 
 block content
     each game in games
-        div(class="games-container")
-            div(class="game-div")
-                h2(class='game-header') #{game.name}
-                p(class='game-info') #{game.description}
-                img(class='gameImage' src= game.imgURL)
-                button(class='add-to-game-shelf') Placeholder
+        include game-card.pug

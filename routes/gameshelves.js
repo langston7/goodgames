@@ -18,4 +18,12 @@ router.get('/', requireAuth, asyncHandler(async (req,res) => {
   res.render('gameshelves', {shelves, allUserGames})
 }));
 
+
+router.get('/:id(\\d+)', asyncHandler(async(req, res) => {
+  
+}))
+
+
+
+
 module.exports = router;
