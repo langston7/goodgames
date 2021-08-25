@@ -22,4 +22,5 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     res.render('game-info', {game, gameshelves});
 }));
 
+
 module.exports = router;
