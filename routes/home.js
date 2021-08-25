@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { User } = require('../db/models')
+const { User, GameShelf } = require('../db/models')
 const { check, validationResult } = require('express-validator');
 const { loginUser, logoutUser } = require('../auth');
 const bcrypt = require('bcryptjs')
@@ -108,7 +108,13 @@ router.post('/signup', csrfProtection, signUpValidators, asyncHandler(async (req
 
   if(validatorErrors.isEmpty()){
     const hashedPassword = await bcrypt.hash(password, 10);
-    await User.create({username, firstName, lastName, hashedPassword});
+    const newUser = await User.create({username, firstName, lastName, hashedPassword});
+
+    // Create 3 gameshelves
+    await GameShelf.create({name:'Played', userId:newUser.id,})
+    await GameShelf.create({name:'Currently Playing', userId:newUser.id,})
+    await GameShelf.create({name:'Want to Play', userId:newUser.id,})
+
     return res.redirect('/login');
   } else {
     errors = validatorErrors.array().map((error) => error.msg);
