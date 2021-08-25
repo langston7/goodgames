@@ -6,7 +6,7 @@
 }
 
 .game-info-container{
-  width: 700px;
+  width: 800px;
   height: fit-content;
   margin: 0 auto;
   margin-bottom: 60px;
@@ -18,11 +18,10 @@
 
 .img-div {
   width: 200px;
-  height: fit-content;
+  height: 200px;
   padding: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .gameImage-info {
@@ -36,31 +35,12 @@
   padding: 10px;
 }
 
+.game-header {
+  display: flex;
+}
+
 .game-info-header {
   font-weight: bold;
   font-size: 20px;
   margin-bottom: 30px;
-  color: black;
-}
-
-.releaseDate,
-.developer {
-  color: rgb(92, 92, 92)
-}
-
-.shelf-link {
-  list-style-type: none;
-}
-
-.shelf-link:hover {
-  text-decoration: underline;
-}
-
-.shelf-list {
-  display: inline;
-}
-
-.shelf-list-container {
-  position: absolute;
-  left: -200px;
 }
