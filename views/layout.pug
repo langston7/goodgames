@@ -1,12 +1,11 @@
 doctype html
 html
   head
-      block head
-        title="Goodgames"
-        link(rel='stylesheet' href='/stylesheets/reset.css')
-        link(rel="stylesheet" href="/stylesheets/index.css")
-        link(rel="stylesheet" href="/stylesheets/games.css")
-        script(src="/javascripts") 
+    block head
+      title="Goodgames"
+      link(rel='stylesheet' href='/stylesheets/reset.css')
+      link(rel="stylesheet" href="/stylesheets/index.css")
+      link(rel="stylesheet" href="/stylesheets/games.css")
   body
     div.nav-container
       div.content-container
@@ -23,7 +22,7 @@ html
           if authenticated
             a(href="/profile" class="user-link") Profile
             h1(class="user-link divider") |
-            form(action="/logout" method="post") 
+            form(action="/logout" method="post")
               button(class="user-link logout") Log Out
           else
             a(href="/login" class="user-link") Login

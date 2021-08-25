@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Game, GameShelf } = require('../db/models')
+const { Game, GameShelf, GamesToGameShelf } = require('../db/models')
 const { check, validationResult } = require('express-validator');
 const { loginUser, logoutUser, requireAuth } = require('../auth');
 const bcrypt = require('bcryptjs')
@@ -18,10 +18,15 @@ router.get('/', requireAuth, asyncHandler(async (req,res) => {
   res.render('gameshelves', {shelves, allUserGames})
 }));
 
-
 router.get('/:id(\\d+)', asyncHandler(async(req, res) => {
-  
-}))
+  res.send("asdf");
+}));
+
+router.post('/:id(\\d+)/games'), asyncHandler(async(req,res) => {
+  const { shelfId, gameId } = req.body;
+  await GamesToGameShelf.create({gameShelfId: shelfId, gameId: gameId});
+
+})
 
 
 
