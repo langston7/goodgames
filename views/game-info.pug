@@ -4,7 +4,8 @@ append head
 
 block content
   include game-card.pug
-  select(class='game-shelf-dropdown')
-    each shelf in gameshelves
-      option(data-id=shelf.id data-gameid=game.id value=shelf.name) #{shelf.name}
-  button(class='add-to-game-shelf-button') Add
+  if authenticated
+    select(class='game-shelf-dropdown')
+      each shelf in gameshelves
+        option(data-id=shelf.id data-gameid=game.id value=shelf.name) #{shelf.name}
+    button(class='add-to-game-shelf-button') Add
