@@ -7,7 +7,6 @@ html
         link(rel="stylesheet" href="/stylesheets/index.css")
         link(rel="stylesheet" href="/stylesheets/games.css")
         link(rel="stylesheet" href="/stylesheets/review.css")
-        script(src="/javascripts") 
   body
     div.nav-container
       div.content-container
@@ -24,7 +23,7 @@ html
           if authenticated
             a(href="/profile" class="user-link") Profile
             h1(class="user-link divider") |
-            form(action="/logout" method="post") 
+            form(action="/logout" method="post")
               button(class="user-link logout") Log Out
           else
             a(href="/login" class="user-link") Login
