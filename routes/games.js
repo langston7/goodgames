@@ -14,9 +14,14 @@ router.get('/', asyncHandler(async (req, res) => {
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     const gameId = parseInt(req.params.id, 10);
     const game = await Game.findByPk(gameId);
-    const { userId } = req.session.auth;
-    const gameshelves = await GameShelf.findAll({where: {userId}});
-    res.render('game-info', {game, gameshelves});
+    if (req.session.auth) {
+        const { userId } = req.session.auth;
+        const gameshelves = await GameShelf.findAll({where: {userId}});
+        return res.render('game-info', {game, gameshelves});
+    } else {
+        return res.render('game-info', {game});
+    }
+    
 }));
 
 
