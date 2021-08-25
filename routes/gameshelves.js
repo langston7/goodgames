@@ -10,9 +10,12 @@ router.get('/', requireAuth, asyncHandler(async (req,res) => {
 
   const {userId} = req.session.auth;
   const shelves = await GameShelf.findAll({where: {userId}, include: Game});
-  console.log(shelves);
-  res.render('gameshelves', {shelves})
 
+  const nestedGames = [];
+  shelves.forEach(shelf => nestedGames.push(shelf.Games))
+  const allUserGames = nestedGames.flat();
+
+  res.render('gameshelves', {shelves, allUserGames})
 }));
 
 module.exports = router;
