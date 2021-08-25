@@ -8,7 +8,7 @@ const { csrfProtection, asyncHandler } = require('../utils');
 
 router.get('/', asyncHandler(async (req, res) => {
     const games = await Game.findAll();
-    res.render('games', {games});
+    res.render('games', { games });
 }));
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {

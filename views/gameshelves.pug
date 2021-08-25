@@ -1,16 +1,14 @@
 extends layout
 
+append head 
+  link(rel="stylesheet" href="/stylesheets/games.css")
 
 block content
-  div Gameshelves
-    ul
+  div(class="shelf-list-container") Gameshelves
+    ul(class="shelf-list")
       each shelf in shelves
-        li= shelf.name
-    ul 
+        a(href=`/gameshelves/${shelf.id}`): li(class="shelf-link")= shelf.name
+  div(class="gameshelf-games-container")  
+    ul(class="gameshelf-games")  
       each game in allUserGames
-          div(class="games-container")
-            div(class="game-div-1")
-                h2(class='game-header') #{game.name}
-                p(class='game-info') #{game.description}
-                img(class='gameImage' src= game.imgURL)
-                button(class='add-to-game-shelf') Placeholder
+        include game-small-card.pug

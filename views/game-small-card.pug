@@ -1,0 +1,8 @@
+div(class="game-info-container")
+  div(class="img-div")
+    a(href=`/games/${game.id}`): img(class='gameImage-info' src= game.imgURL)  
+    div(class="rating") 3.5/5 
+  div(class="game-content")
+    a(href=`/games/${game.id}`): h2(class='game-info-header') #{game.name}
+    span(class='releaseDate') Release Date: #{game.releaseDate.toLocaleDateString()}
+    span(class='developer') Developer: #{game.developer}

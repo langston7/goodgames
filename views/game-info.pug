@@ -1,11 +1,8 @@
 extends layout
 append head
-  script(src="/javascripts/gameshelf-button.js")
+  link(rel="stylesheet" href="/stylesheets/game-info.css")
+  if authenticated
+    script(src="/javascripts/gameshelf-button.js")
 
 block content
   include game-card.pug
-  if authenticated
-    select(class='game-shelf-dropdown')
-      each shelf in gameshelves
-        option(data-id=shelf.id data-gameid=game.id value=shelf.name) #{shelf.name}
-    button(class='add-to-game-shelf-button') Add
