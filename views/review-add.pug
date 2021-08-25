@@ -1,14 +1,14 @@
 extends layout
 
 block content
-    form(action="/games/:id/review" method="post")
-      div(class='container-review-div')
+    div(class='container-review-div')
+      form(action="/games/:id/review" method="post" class="review-form")
           h1(class='game-title-header-route') games/review
           div(class='game-title-developer-div')
               h2(class='game-title') #{games.name}
               span(class='developer') By #{games.developer}
               img(class='game-img-review' src= games.imgURL)
-          div(class='rating') ******
-    div(class='form-conatiner-div')
-      h1(class='form-welcome-text') Give us your review.
-      textarea(class= 'text-review-box' name="review" /*value=review.content*/)
+              div(class='rating') ******
+              h1(class='form-welcome-text') Give us your review.
+              textarea(class= 'text-review-box' name="review" /*value=review.content*/)
+              button(class='review-submit') Submit
