@@ -13,7 +13,6 @@ router.get('/', function(req, res, next) {
 
 router.get('/login', csrfProtection, asyncHandler(async (req, res) => {
   const user = await User.build()
-  console.log(loginUser);
   res.render('login', {csrfToken: req.csrfToken(), user})
 }));
 

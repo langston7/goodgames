@@ -6,7 +6,9 @@ const { loginUser, logoutUser, requireAuth } = require('../auth');
 const bcrypt = require('bcryptjs')
 const { csrfProtection, asyncHandler } = require('../utils');
 
-router.get('/', requireAuth, asyncHandler(async (req,res) => {
+router.use(requireAuth);
+
+router.get('/', asyncHandler(async (req,res) => {
 
   const {userId} = req.session.auth;
   const shelves = await GameShelf.findAll({where: {userId}, include: Game});
@@ -18,15 +20,33 @@ router.get('/', requireAuth, asyncHandler(async (req,res) => {
   res.render('gameshelves', {shelves, allUserGames})
 }));
 
-router.get('/:id(\\d+)', asyncHandler(async(req, res) => {
-  res.send("asdf");
+router.get('/:id(\\d+)', asyncHandler(async(req, res, next) => {
+  const { userId } = req.session.auth;
+  const shelfId = req.params.id;
+
+  const shelves = await GameShelf.findAll({where: {userId}, include: Game});
+  const shelf = await GameShelf.findOne({where: {id: shelfId}, include: Game})
+
+  if (shelf.userId === userId) {
+    const shelfGames = shelf.Games;
+    res.render('gameshelves', { shelves, allUserGames: shelfGames })
+  } else {
+    const err = new Error('Unauthorized request');
+    err.status = 403;
+    next(err);
+  }
+
 }));
 
-router.post('/:id(\\d+)/games'), asyncHandler(async(req,res) => {
+router.post('/:id(\\d+)/games', asyncHandler(async(req,res) => {
   const { shelfId, gameId } = req.body;
-  await GamesToGameShelf.create({gameShelfId: shelfId, gameId: gameId});
 
-})
+  console.log(shelfId, gameId);
+
+  const newGame = await GamesToGameShelf.create({gameShelfId: shelfId, gameId: gameId});
+
+  res.json({newGame});
+}));
 
 
 
