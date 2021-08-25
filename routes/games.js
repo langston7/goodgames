@@ -17,4 +17,5 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     res.render('game-info', {games});
 }));
 
+
 module.exports = router;
