@@ -8,7 +8,7 @@ block content
 
 
   div(class="review-container")
-    form(action=`/games/${games.id}/review/new` method="post" class="review-form")
+    form(action=`/games/${games.id}/reviews` method="post" class="review-form")
       if errors
           div(role='alert')
             p The Following errors occurred:
@@ -17,8 +17,8 @@ block content
                 li= error
       div(class="top-row")
         div(class="img-div")
-          img(class="game-img" src= games.imgURL)
-          div(class="rating") 5/5
+          img(class="game-img" src= games.imgURL) 
+          div(class="rating-average") 5/5
         div(class="game-content")
           h2(class='game-title') #{games.name}
           span(class='releaseDate') Release Date: #{games.releaseDate.toLocaleDateString()}
@@ -26,5 +26,16 @@ block content
       div(class="bottom-row")
         div(class="review-field")
           h1(class="review-welcome") Give us your review
+            div(class="rate")
+              input(type="radio" id="star5" name="rating" value="5")           
+              label(for="star5" title="text">5 stars)
+              input(type="radio" id="star4" name="rating" value="4")             
+              label(for="star4" title="text">4 stars)
+              input(type="radio" id="star3" name="rating" value="3")             
+              label(for="star3" title="text">3 stars)
+              input(type="radio" id="star2" name="rating" value="2")             
+              label(for="star2" title="text">2 stars)
+              input(type="radio" id="star1" name="rating" value="1")             
+              label(for="star1" title="text">1 star)
           textarea(class="review-box" name="content" value=review.content)
           button(class="review-submit") Submit
