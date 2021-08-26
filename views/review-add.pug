@@ -1,5 +1,9 @@
 extends layout
 
+append head 
+    link(rel="stylesheet" href="/stylesheets/review.css")
+
+
 block content
     div(class='container-review-div')
       form(action="/games/:id/review" method="post" class="review-form")
