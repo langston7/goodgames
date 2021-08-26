@@ -1,14 +1,18 @@
 extends layout
 
-append head 
-  link(rel="stylesheet" href="/stylesheets/games.css")
+append head
+  link(rel="stylesheet" href="/stylesheets/gameshelves.css")
 
 block content
-  div(class="shelf-list-container") Gameshelves
-    ul(class="shelf-list")
-      each shelf in shelves
-        a(href=`/gameshelves/${shelf.id}`): li(class="shelf-link")= shelf.name
-  div(class="gameshelf-games-container")  
-    ul(class="gameshelf-games")  
-      each game in allUserGames
-        include game-small-card.pug
+  h1(class="page-header") Gameshelves
+  div(class="outer-container")
+    div(class="shelf-list-container")
+      h2(class="shelf-list-header") My Shelves
+      ul(class="shelf-list")
+        each shelf in shelves
+          a(href=`/gameshelves/${shelf.id}`): li(class="shelf-link")= shelf.name
+    div(class="gameshelf-games-container")
+      ul(class="gameshelf-games")
+        each game in allUserGames
+          include game-small-card.pug
+    div(class="empty-box")
