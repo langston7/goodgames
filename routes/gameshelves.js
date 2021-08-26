@@ -39,11 +39,11 @@ router.get('/:id(\\d+)', asyncHandler(async(req, res, next) => {
 }));
 
 router.post('/:id(\\d+)/games', asyncHandler(async(req,res) => {
-  const { shelfId, gameId } = req.body;
+  const { shelfId, gameId, shelfValue } = req.body;
 
-  console.log(shelfId, gameId);
+  console.log(shelfId, gameId, shelfValue);
 
-  const newGame = await GamesToGameShelf.create({gameShelfId: shelfId, gameId: gameId});
+  // const newGame = await GamesToGameShelf.create({gameShelfId: shelfId, gameId: gameId});
 
   res.json({newGame});
 }));
