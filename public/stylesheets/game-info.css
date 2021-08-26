@@ -14,6 +14,7 @@
   background-color: #f3f3f3;
   font-family: 'Merriweather', serif;
   border-radius: 5px;
+  position: relative;
 }
 
 .img-div {
@@ -74,4 +75,16 @@
 
 .played-status {
   width: 200px;
+}
+
+.success-message {
+  width: fit-content;
+  padding: 8px 10px;
+  position: absolute;
+  left: 350px;
+  bottom: -30px;
+  border-radius: 15px;
+  opacity: 1;
+  list-style-type: none;
+  background-color: rgba(255, 166, 0, 0.637);
 }
