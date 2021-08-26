@@ -12,7 +12,7 @@ router.use(requireAuth);
 router.get('/', asyncHandler(async (req,res) => {
 
   const {userId} = req.session.auth;
-  const shelves = await GameShelf.findAll({where: {userId}, include: Game});
+  const shelves = await GameShelf.findAll({where: {userId}, include: Game, order: [['id']]});
 
   const nestedGames = [];
   shelves.forEach(shelf => nestedGames.push(shelf.Games))
@@ -21,11 +21,11 @@ router.get('/', asyncHandler(async (req,res) => {
   res.render('gameshelves', {shelves, allUserGames})
 }));
 
-router.get('/:id(\\d+)', asyncHandler(async(req, res, next) => {
+router.get('/:id(\\d+)', requireAuth, asyncHandler(async(req, res, next) => {
   const { userId } = req.session.auth;
   const shelfId = req.params.id;
 
-  const shelves = await GameShelf.findAll({where: {userId}, include: Game});
+  const shelves = await GameShelf.findAll({where: {userId}, include: Game, order: [['id']]});
   const shelf = await GameShelf.findOne({where: {id: shelfId}, include: Game})
 
   if (shelf.userId === userId) {
