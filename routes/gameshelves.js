@@ -5,6 +5,7 @@ const { check, validationResult } = require('express-validator');
 const { loginUser, logoutUser, requireAuth } = require('../auth');
 const bcrypt = require('bcryptjs')
 const { csrfProtection, asyncHandler } = require('../utils');
+const db = require('../db/models');
 
 router.use(requireAuth);
 
@@ -70,12 +71,12 @@ router.post('/:id(\\d+)/games', asyncHandler(async(req,res) => {
   });
 
   const shelves = await GameShelf.findAll({
-    where: { userId }, 
+    where: { userId },
     include: {
       model: Game,
     }
   });
-  
+
   // console.log(shelves);
   // console.log(JSON.stringify(shelves[0].Games, null, 2));
   let hasGame = false;
@@ -96,6 +97,14 @@ router.post('/:id(\\d+)/games', asyncHandler(async(req,res) => {
 
 }));
 
+
+router.post('/new', asyncHandler(async(req, res) => {
+  const { shelfName } = req.body;
+  const { userId } = req.session.auth;
+
+  await GameShelf.create({name: shelfName, userId: userId});
+  res.json();
+}));
 
 
 
