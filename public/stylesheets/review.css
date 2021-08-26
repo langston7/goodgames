@@ -1,16 +1,97 @@
-.game-title-header-route{
-  color: black;
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+.body-content {
+  position: relative;
+  top: 30px;
+}
+
+.review-container {
+  width: 700px;
+  height: fit-content;
+  margin: 0 auto;
+  margin-bottom: 60px;
   display: flex;
+  flex-wrap: wrap;
+  background-color: #f3f3f3;
+  font-family: "Merriweather", serif;
+  border-radius: 5px;
+}
+
+.review-form {
+  border:solid yellow;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
+.img-div {
+  border: solid red;
+  width: 200px;
+  height: fit-content;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
-/* body{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-} */
+.game-img {
+  width: 100%;
+}
 
-.container-review-div {
+.game-content {
+  border: solid blue;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+}
+
+.game-title {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 30px;
+  color: black;
+}
+
+.releaseDate,
+.developer {
+  color: rgb(92, 92, 92)
+}
+
+.review-field {
+  /* border: solid green 2px; */
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.review-welcome {
+  font-weight: bold;
+}
+
+.review-box {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  resize: none;
+  width: 100%;
+  height: 100px;
+}
+
+.review-submit {
+  border-radius: 28px;
+  border: none;
+  background-color: rgb(255, 105, 51);
+  width: 50%;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 20px;
+}
+
+/* Version 1 */
+/* .container-review-div {
   display: flex;
   flex-direction: column;
   border: solid red;
@@ -30,6 +111,7 @@
   display: flex;
   flex-direction: column;
   padding: 10px;
+  border:solid blue;
 }
 
 .game-title-header-route {
@@ -40,7 +122,6 @@
   font-family:'Rajdhani', sans-serif;
   font-size: 26px;
   font-weight: 900;
-  
 }
 
 .game-title-developer-div {
@@ -51,7 +132,6 @@
 
 .game-title, .developer {
   padding: 5px;
-  /* margin: 10px; */
   margin-top: 0px;
   margin-bottom: 5px;
 }
@@ -71,22 +151,6 @@
   border-radius: 30px;
   border: none;
   background-color: rgb(255, 105, 51);
-}
-
-
-/* .game-title-header-route {
-  display: flex;
-  align-items: center;
 } */
 
-/* .game-img-review {
-  max-width: 300px;
-  max-height: 300px;
-  border: solid blue;
-  padding: 15px;
-  align-self: flex-start;
-}
-
-.game-title {
-  border:solid yellow;
-} */
+/* Version 2 */

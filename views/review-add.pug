@@ -1,6 +1,21 @@
 extends layout
 
 block content
+
+  div(class="review-container")
+    form(action="/games/:id/review" method="post" class="review-form")
+      div(class="img-div")
+        img(class="game-img" src= games.imgURL)
+        div(class="rating") 5/5
+      div(class="game-content")
+        h2(class='game-title') #{games.name}
+        span(class='releaseDate') Release Date: #{games.releaseDate.toLocaleDateString()}
+        span(class='developer') Developer: #{games.developer}
+    div(class="review-field")
+      h1(class="review-welcome") Give us your review
+      textarea(class="review-box")
+      button(class="review-submit") Submit
+//- Version 1
     div(class='container-review-div')
       form(action="/games/:id/review" method="post" class="review-form")
           h1(class='game-title-header-route') games/review
