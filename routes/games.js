@@ -20,23 +20,20 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
         const gameshelves = await GameShelf.findAll({where: {userId}});
 
         const shelves = await GameShelf.findAll({
-            where: { userId }, 
+            where: { userId },
             include: {
                 model: Game,
             }
         });
 
         const reviews = await Review.findAll({
-            where: { gameId }, 
-            include: {
-                model: Review,
-            }
+            where: {gameId}
         });
 
 
-    
+
         const ownedShelves = [];
-      
+
         for (let i = 0; i < shelves.length; i++) {
             const shelf = shelves[i];
             const shelfName = shelf.name;
@@ -52,12 +49,12 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
                 }
             }
         }
-
+        // return res.json(reviews)
         return res.render('game-info', {game, gameshelves, ownedShelves, reviews});
     } else {
         return res.render('game-info', {game});
     }
-    
+
 }));
 
 

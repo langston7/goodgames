@@ -5,7 +5,7 @@ div(class="game-info-container")
       select(class='game-shelf-dropdown')
         each shelf in gameshelves
           option(data-id=shelf.id data-gameid=game.id value=shelf.name) #{shelf.name}
-      button(class='add-to-game-shelf-button') Add      
+      button(class='add-to-game-shelf-button') Add
   div(class="game-content")
     div(class="header-and-status")
       div(class="game-header")
@@ -16,6 +16,6 @@ div(class="game-info-container")
       div(class="played-status")
         ul(class="played-status-list")
           if authenticated
-            each shelf in ownedShelves 
+            each shelf in ownedShelves
               li= shelf
     p(class='game-info-description') #{game.description}
