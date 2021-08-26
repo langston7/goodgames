@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Game, GameShelf } = require('../db/models')
+const { Game, GameShelf, Review } = require('../db/models')
 const { check, validationResult } = require('express-validator');
 const { loginUser, logoutUser } = require('../auth');
 const bcrypt = require('bcryptjs')
@@ -25,6 +25,15 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
                 model: Game,
             }
         });
+
+        const reviews = await Review.findAll({
+            where: { gameId }, 
+            include: {
+                model: Review,
+            }
+        });
+
+
     
         const ownedShelves = [];
       
@@ -44,7 +53,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
             }
         }
 
-        return res.render('game-info', {game, gameshelves, ownedShelves});
+        return res.render('game-info', {game, gameshelves, ownedShelves, reviews});
     } else {
         return res.render('game-info', {game});
     }
