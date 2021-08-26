@@ -20,6 +20,7 @@
   font-family: 'Merriweather', serif;
   border-radius: 5px;
   transition: box-shadow .3s;
+  position: relative;
 }
 
 .game-info-container:hover{
@@ -51,6 +52,12 @@
   font-size: 20px;
   margin-bottom: 30px;
   color: black;
+  width: fit-content;
+}
+
+.game-link{
+  width: fit-content;
+  max-width: 400px;
 }
 
 .releaseDate,
@@ -86,7 +93,10 @@
   width: 20%;
 }
 
-.shelf-new-header{
-  margin-top: 20px;
-  font-size: 20px;
+.delete-button,
+.material-icons {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color:rgb(92, 92, 92);
 }

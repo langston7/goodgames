@@ -5,6 +5,7 @@ const { check, validationResult } = require('express-validator');
 const { loginUser, logoutUser, requireAuth } = require('../auth');
 const bcrypt = require('bcryptjs')
 const { csrfProtection, asyncHandler } = require('../utils');
+const db = require('../db/models');
 
 router.use(requireAuth);
 
@@ -29,14 +30,34 @@ router.get('/:id(\\d+)', asyncHandler(async(req, res, next) => {
 
   if (shelf.userId === userId) {
     const shelfGames = shelf.Games;
-    res.render('gameshelves', { shelves, allUserGames: shelfGames })
+    res.render('gameshelf-info', { shelves, allUserGames: shelfGames })
   } else {
     const err = new Error('Unauthorized request');
     err.status = 403;
     next(err);
   }
-
 }));
+
+router.delete('/:shelfId/games/:gameId', asyncHandler(async(req, res, next) => {
+  const shelfId = req.params.shelfId;
+  const gameId = req.params.gameId;
+  console.log('HELLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
+  const recordToDestroy = await GamesToGameShelf.findOne({
+    where: {gameShelfId: shelfId, gameId}
+  });
+
+  console.log(recordToDestroy, 'HELLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
+  
+  if (recordToDestroy) {
+    await recordToDestroy.destroy();
+    return res.json({});
+  } else {
+    const error = new Error('Record does not exist');
+    error.status = 404;
+    next(error);
+  }
+
+}))
 
 router.post('/:id(\\d+)/games', asyncHandler(async(req,res) => {
   const { shelfId, gameId } = req.body;
@@ -50,12 +71,12 @@ router.post('/:id(\\d+)/games', asyncHandler(async(req,res) => {
   });
 
   const shelves = await GameShelf.findAll({
-    where: { userId }, 
+    where: { userId },
     include: {
       model: Game,
     }
   });
-  
+
   // console.log(shelves);
   // console.log(JSON.stringify(shelves[0].Games, null, 2));
   let hasGame = false;
@@ -76,6 +97,14 @@ router.post('/:id(\\d+)/games', asyncHandler(async(req,res) => {
 
 }));
 
+
+router.post('/new', asyncHandler(async(req, res) => {
+  const { shelfName } = req.body;
+  const { userId } = req.session.auth;
+
+  await GameShelf.create({name: shelfName, userId: userId});
+  res.json();
+}));
 
 
 
