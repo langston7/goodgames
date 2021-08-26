@@ -48,7 +48,8 @@ router.post('/games/:id(\\d+)/reviews',reviewValidators, asyncHandler(async (req
 
 //edit
 router.get('/reviews/:id(\\d+)/edit', asyncHandler(async (req, res) => {
-  const review = await Review.findAll();
+  const reviewId = parseInt(req.params.id, 10);
+  const review = await Review.findByPk();
   const gameId = parseInt(req.params.id, 10);
   const games = await Game.findByPk(gameId)
   res.render('review-add', {review, games});
