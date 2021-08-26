@@ -8,26 +8,50 @@ const { csrfProtection, asyncHandler } = require('../utils');
 
 //get
 router.get('/games/:id(\\d+)/reviews', asyncHandler(async (req, res) => {
-    const reviews = await Review.findAll();
+    const review = await Review.findAll();
     const gameId = parseInt(req.params.id, 10);
     const games = await Game.findByPk(gameId)
-    res.render('review-add', {reviews, games});
+    res.render('review-add', {review, games});
 }));
 
+
+const reviewValidators = [
+  check('content')
+    .exists({checkFalsy: true})
+    .withMessage('Please provide a review')
+    .isLength({ min: 5})
+    .withMessage('review must contain more than 5 characters')
+]
+
+
 //post new
-router.post('/games/:id(\\d+)/reviews', asyncHandler(async (req, res) => {
-  const reviews = await Review.findAll();
+router.post('/games/:id(\\d+)/review/new',reviewValidators, asyncHandler(async (req, res) => {
+  const { content, rating } = req.body
+  const  { userId } = req.session.auth;
   const gameId = parseInt(req.params.id, 10);
-  const games = await Game.findByPk(gameId)
-  res.render('review-add', {reviews, games});
+  const games = await Game.findByPk(gameId);
+
+  let errors = [];
+  const validatorErrors = validationResult(req);
+  const review = await Review.build({ content, gameId, userId, rating:5 })
+
+  if(validatorErrors.isEmpty()){
+    await review.save()
+    return res.redirect(`/games/${gameId}`);
+  }else {
+    errors = validatorErrors.array().map((error) => error.msg);
+    res.render('review-add',{
+     games, errors, review}
+    );
+  }
 }));
 
 //edit
 router.get('/reviews/:id(\\d+)/edit', asyncHandler(async (req, res) => {
-  const reviews = await Review.findAll();
+  const review = await Review.findAll();
   const gameId = parseInt(req.params.id, 10);
   const games = await Game.findByPk(gameId)
-  res.render('review-add', {reviews, games});
+  res.render('review-add', {review, games});
 }));
 
 
