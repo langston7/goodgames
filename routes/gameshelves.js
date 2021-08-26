@@ -30,14 +30,34 @@ router.get('/:id(\\d+)', asyncHandler(async(req, res, next) => {
 
   if (shelf.userId === userId) {
     const shelfGames = shelf.Games;
-    res.render('gameshelves', { shelves, allUserGames: shelfGames })
+    res.render('gameshelf-info', { shelves, allUserGames: shelfGames })
   } else {
     const err = new Error('Unauthorized request');
     err.status = 403;
     next(err);
   }
-
 }));
+
+router.delete('/:shelfId/games/:gameId', asyncHandler(async(req, res, next) => {
+  const shelfId = req.params.shelfId;
+  const gameId = req.params.gameId;
+  console.log('HELLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
+  const recordToDestroy = await GamesToGameShelf.findOne({
+    where: {gameShelfId: shelfId, gameId}
+  });
+
+  console.log(recordToDestroy, 'HELLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
+  
+  if (recordToDestroy) {
+    await recordToDestroy.destroy();
+    return res.json({});
+  } else {
+    const error = new Error('Record does not exist');
+    error.status = 404;
+    next(error);
+  }
+
+}))
 
 router.post('/:id(\\d+)/games', asyncHandler(async(req,res) => {
   const { shelfId, gameId } = req.body;

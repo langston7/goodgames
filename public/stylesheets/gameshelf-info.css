@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+.body-content {
+  position: relative;
+  top: 30px;
+  justify-content: center;
+}
+
+.outer-container{
+  display:flex;
+}
+
+.game-info-container{
+  width: 700px;
+  height: fit-content;
+  margin: 0 auto;
+  margin-bottom: 60px;
+  display: flex;
+  background-color: #ffffff;
+  font-family: 'Merriweather', serif;
+  border-radius: 5px;
+  transition: box-shadow .3s;
+  position: relative;
+}
+
+.game-info-container:hover{
+  box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+}
+
+.img-div {
+  width: 200px;
+  height: fit-content;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gameImage-info {
+  width: 100%;
+}
+
+.game-content {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  padding: 10px;
+}
+
+.game-info-header {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 30px;
+  color: black;
+  width: fit-content;
+}
+
+.game-link{
+  width: fit-content;
+  max-width: 400px;
+}
+
+.releaseDate,
+.developer {
+  color: rgb(92, 92, 92)
+}
+
+.shelf-link {
+  list-style-type: none;
+  padding: 2px;
+}
+
+.shelf-link:hover {
+  text-decoration: underline;
+}
+
+.shelf-list-container {
+  width: 20%;
+  height: fit-content;
+  padding: 10px;
+}
+
+.gameshelf-games-container {
+  width: auto;
+  padding-top: 20px;
+}
+
+.shelf-list-header{
+  font-size: 20px;
+}
+
+.empty-box{
+  width: 20%;
+}
+
+.delete-button,
+.material-icons {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color:rgb(92, 92, 92);
+}
