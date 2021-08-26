@@ -16,31 +16,39 @@ document.addEventListener("DOMContentLoaded", event => {
         },
       });
 
-      const resObject = await res.json();
+
+
+      
+
+      // const resObject = await res.json();
       // const ownedShelves = resObject.ownedShelves
-      // const playedStatusList = document.querySelector('.played-status-list')
-
+      const playedStatusList = document.querySelector('.played-status-list')
       // check the current contents of the played-status div
-      // const divPlayedLi = [...document.querySelectorAll('.played-status li')];
-      // const divPlayedStatusContents = divPlayedLi.map(li => li.innerText)
+      const divPlayedLi = [...document.querySelectorAll('.played-status li')];
+      const divPlayedStatusContents = divPlayedLi.map(li => li.innerText)
 
-      // for (let i = 0; i < ownedShelves.length; i++) {
-      //   const shelf = ownedShelves[i];
+      if (!divPlayedStatusContents.includes(selectedShelf.value)) {
+        const successMessage = document.createElement('div');
+        successMessage.innerText = `Added to ${selectedShelf.value} shelf`;
+        successMessage.setAttribute('class', 'success-message')
+        const gameInfoContainer = document.querySelector('.game-info-container');
+        gameInfoContainer.appendChild(successMessage);
 
-        // if any contents match of ownedShelves match the value of contents currently in played-status div, then don't add it to played-status div
-      //   if (divPlayedStatusContents.includes(shelf)) {
-      //     continue;
-      //   }
-      //   const li = document.createElement('li');
-      //   li.innerText = shelf;
-      //   playedStatusList.appendChild(li);
-      // }
+        setTimeout(() => {
+          successMessage.style.opacity = 0;
+          successMessage.style.transition = 'opacity 0.5s ease-out 0s'
+        }, 1000)
+  
+        setTimeout(() => {
+          successMessage.remove();
+        }, 2100)
 
-      // if (!ownedShelves.length) {
-      //   const li = document.createElement('li');
-      //   li.innerText = selectedShelf.value;
-      //   playedStatusList.appendChild(li);
-      // }
+        //TODO: add selectedShelf.value to playedStatusList dynamically
+        const li = document.createElement('li');
+        li.innerText = selectedShelf.value;
+        playedStatusList.appendChild(li);
+      }
+
 
     } catch (e) {
       console.log(e);
