@@ -4,6 +4,8 @@ append head
   link(rel="stylesheet" href="/stylesheets/gameshelf-info.css")
   link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
   script(src="/javascripts/delete-game.js")
+  if authenticated
+    script(src="/javascripts/gameshelf-add.js")
 block content
   h1(class="page-header") Gameshelves
   div(class="outer-container")
@@ -12,6 +14,10 @@ block content
       ul(class="shelf-list")
         each shelf in shelves
           a(href=`/gameshelves/${shelf.id}`): li(class="shelf-link")= shelf.name
+      form(action ="/gameshelves/new" method="post" class="new-shelf")
+        h1(class="shelf-new-header") Add a New Shelf:
+        input(class="shelf-input" type=text name="shelfName")
+        button(class="shelf-button") Create
     div(class="gameshelf-games-container")
       ul(class="gameshelf-games")
         each game in allUserGames
