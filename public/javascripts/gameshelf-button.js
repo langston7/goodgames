@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", event => {
   const button = document.querySelector(".add-to-game-shelf-button");
   const dropdown = document.querySelector(".game-shelf-dropdown");
-  
+
   button.addEventListener("click", async(event) => {
     const selectedShelf = document.querySelector(`option[value="${dropdown.value}"]`);
     const shelfId = parseInt(selectedShelf.dataset.id, 10);
@@ -15,11 +15,6 @@ document.addEventListener("DOMContentLoaded", event => {
           "Content-Type": "application/json"
         },
       });
-
-
-
-      
-
       // const resObject = await res.json();
       // const ownedShelves = resObject.ownedShelves
       const playedStatusList = document.querySelector('.played-status-list')
@@ -38,7 +33,7 @@ document.addEventListener("DOMContentLoaded", event => {
           successMessage.style.opacity = 0;
           successMessage.style.transition = 'opacity 0.5s ease-out 0s'
         }, 1000)
-  
+
         setTimeout(() => {
           successMessage.remove();
         }, 2100)
