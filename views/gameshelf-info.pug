@@ -1,0 +1,19 @@
+extends layout
+
+append head
+  link(rel="stylesheet" href="/stylesheets/gameshelf-info.css")
+  link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
+  script(src="/javascripts/delete-game.js")
+block content
+  h1(class="page-header") Gameshelves
+  div(class="outer-container")
+    div(class="shelf-list-container")
+      h2(class="shelf-list-header") My Shelves
+      ul(class="shelf-list")
+        each shelf in shelves
+          a(href=`/gameshelves/${shelf.id}`): li(class="shelf-link")= shelf.name
+    div(class="gameshelf-games-container")
+      ul(class="gameshelf-games")
+        each game in allUserGames
+          include game-small-card.pug
+    div(class="empty-box")
