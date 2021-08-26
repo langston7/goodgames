@@ -39,13 +39,41 @@ router.get('/:id(\\d+)', asyncHandler(async(req, res, next) => {
 }));
 
 router.post('/:id(\\d+)/games', asyncHandler(async(req,res) => {
-  const { shelfId, gameId, shelfValue } = req.body;
+  const { shelfId, gameId } = req.body;
 
-  console.log(shelfId, gameId, shelfValue);
+  const { userId } =  req.session.auth;
 
-  // const newGame = await GamesToGameShelf.create({gameShelfId: shelfId, gameId: gameId});
+  const shelf = await GameShelf.findByPk(shelfId, {
+    include: {
+      model: Game,
+    }
+  });
 
-  res.json({newGame});
+  const shelves = await GameShelf.findAll({
+    where: { userId }, 
+    include: {
+      model: Game,
+    }
+  });
+  
+  // console.log(shelves);
+  // console.log(JSON.stringify(shelves[0].Games, null, 2));
+  let hasGame = false;
+
+  shelf.Games.forEach(game => {
+    console.log(gameId, game);
+    if (game.id === gameId) {
+      hasGame = true;
+    }
+  })
+
+  if(!hasGame) {
+    const newGame = await GamesToGameShelf.create({gameShelfId: shelfId, gameId: gameId});
+    res.json({newGame});
+  } else {
+    res.json({})
+  }
+
 }));
 
 

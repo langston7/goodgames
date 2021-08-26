@@ -35,12 +35,43 @@
   padding: 10px;
 }
 
+.header-and-status {
+  display: flex;
+  justify-content: space-between;
+}
+
 .game-header {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.played-status {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.played-status-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.played-status-list > li {
+  list-style-type: none;
+  background: lightgreen;
+  border-radius: 15px;
+  padding: 7px;
+  margin-bottom: 3px;
+  width:fit-content;
 }
 
 .game-info-header {
   font-weight: bold;
   font-size: 20px;
   margin-bottom: 30px;
+}
+
+.played-status {
+  width: 200px;
 }
