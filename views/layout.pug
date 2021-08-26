@@ -19,7 +19,7 @@ html
           a(href="/games" class="nav-link") Games
         div.user-container
           if authenticated
-            a(href="/profile" class="user-link") Profile
+            div(class="user-link") Welcome, #{user.firstName}
             h1(class="user-link divider") |
             form(action="/logout" method="post")
               button(class="user-link logout") Log Out

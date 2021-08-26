@@ -3,9 +3,11 @@
 .body-content {
   position: relative;
   top: 30px;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
+}
+
+.outer-container{
+  display:flex;
 }
 
 .game-info-container{
@@ -56,6 +58,30 @@
   color: rgb(92, 92, 92)
 }
 
+.shelf-link {
+  list-style-type: none;
+  padding: 2px;
+}
+
+.shelf-link:hover {
+  text-decoration: underline;
+}
+
+.shelf-list-container {
+  width: 20%;
+  height: fit-content;
+  padding: 10px;
+}
+
 .gameshelf-games-container {
   width: auto;
+  padding-top: 20px;
+}
+
+.shelf-list-header{
+  font-size: 20px;
+}
+
+.empty-box{
+  width: 20%;
 }
