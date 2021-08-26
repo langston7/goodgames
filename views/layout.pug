@@ -5,7 +5,6 @@ html
         title="Goodgames"
         link(rel='stylesheet' href='/stylesheets/reset.css')
         link(rel="stylesheet" href="/stylesheets/index.css")
-        link(rel="stylesheet" href="/stylesheets/review.css")
   body
     div.nav-container
       div.content-container
@@ -20,7 +19,7 @@ html
           a(href="/games" class="nav-link") Games
         div.user-container
           if authenticated
-            a(href="/profile" class="user-link") Profile
+            div(class="user-link") Welcome, #{user.firstName}
             h1(class="user-link divider") |
             form(action="/logout" method="post")
               button(class="user-link logout") Log Out
