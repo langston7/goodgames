@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs')
 const { csrfProtection, asyncHandler } = require('../utils');
 
 //get
-router.get('/games/:id(\\d+)/reviews', asyncHandler(async (req, res) => {
+router.get('/games/:id(\\d+)/reviews/new', asyncHandler(async (req, res) => {
     const review = await Review.findAll();
     const gameId = parseInt(req.params.id, 10);
     const games = await Game.findByPk(gameId)
@@ -25,15 +25,15 @@ const reviewValidators = [
 
 
 //post new
-router.post('/games/:id(\\d+)/review/new',reviewValidators, asyncHandler(async (req, res) => {
+router.post('/games/:id(\\d+)/reviews',reviewValidators, asyncHandler(async (req, res) => {
   const { content, rating } = req.body
   const  { userId } = req.session.auth;
   const gameId = parseInt(req.params.id, 10);
   const games = await Game.findByPk(gameId);
-
+  console.log(rating)
   let errors = [];
   const validatorErrors = validationResult(req);
-  const review = await Review.build({ content, gameId, userId, rating:5 })
+  const review = await Review.build({ content, gameId, userId, rating })
 
   if(validatorErrors.isEmpty()){
     await review.save()

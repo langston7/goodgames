@@ -79,6 +79,8 @@
 
 .review-welcome {
   font-weight: bold;
+  display: flex;
+  align-content: flex-end;
 }
 
 .review-box {
@@ -99,3 +101,38 @@
   font-weight: bold;
   padding: 20px;
 }
+
+/* https://codepen.io/hesguru/pen/BaybqXv */
+
+.rate {
+    float: left;
+    height: 60px;
+    padding: 0 10px;
+    padding-top: 10px;
+    padding-left: 150px;
+    font-size: 20px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+ }
+
