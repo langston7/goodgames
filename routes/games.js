@@ -14,11 +14,16 @@ router.get('/', asyncHandler(async (req, res) => {
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     const gameId = parseInt(req.params.id, 10);
     const game = await Game.findByPk(gameId);
-
+    const reviews = await Review.findAll({
+        where: { gameId }
+    });
+ 
     if (req.session.auth) {
         const { userId } = req.session.auth;
         const gameshelves = await GameShelf.findAll({where: {userId}});
-
+        const userReview = await Review.findOne({
+            where: { gameId:gameId, userId:userId }
+        })
         const shelves = await GameShelf.findAll({
             where: { userId },
             include: {
@@ -26,9 +31,6 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
             }
         });
 
-        const reviews = await Review.findAll({
-            where: { gameId }
-        });
 
         const user = await User.findOne({ where: userId })
 
@@ -52,9 +54,9 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
             }
         }
         
-        return res.render('game-info', {game, gameshelves, ownedShelves, reviews, user});
+        return res.render('game-info', {game, gameshelves, ownedShelves, reviews, user, userReview});
     } else {
-        return res.render('game-info', {game});
+        return res.render('game-info', {game, reviews});
     }
 
 }));
