@@ -2,7 +2,10 @@
 div(class="game-info-container" data-gameId= game.id)
   div(class="img-div")
     a(class="game-link" href=`/games/${game.id}`): img(class='gameImage-info' src= game.imgURL)
-    div(class="rating") 3.5/5
+    if game.rating === null 
+      div(class="rating") Rating: Unrated 
+    else
+      div(class="rating") Rating: #{game.rating}/5
   div(class="game-content")
     a(class="game-link" href=`/games/${game.id}`): h2(class='game-info-header') #{game.name}
     span(class='releaseDate') Release Date: #{game.releaseDate.toLocaleDateString()}

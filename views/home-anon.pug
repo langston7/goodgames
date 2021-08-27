@@ -1,0 +1,20 @@
+extends layout
+append head
+  link(rel="stylesheet" href="/stylesheets/home-anon.css")
+
+block content
+  div(class="anon-home-container")
+    img(src="https://cdn.discordapp.com/attachments/876969050750738462/880865167821385788/banner.png")
+    h2(class="anon-home-header-2") Explore, Discover, Play.
+    div(class="anon-home-p-section")
+      div(class="header-3-div")
+        h3(class="anon-home-header-3") Deciding what to play next?
+        p(class="anon-home-p") Need some inspiration? Find others opinions on games and find out what's the best fit for you.
+      div(class="header-3-div")
+        h4(class="anon-home-header-4") Open discussion for gamers
+        p(class="anon-home-p") Tell the world what you thought of the games you've played.
+    div(class="scroll-container")
+      h5(class="scroll-header") What can you discover?
+      div(class="scroll-bar")
+        each game in games
+          img(class="game-thumbnail" src=game.imgURL)
