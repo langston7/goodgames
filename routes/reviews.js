@@ -30,7 +30,6 @@ router.post('/games/:id(\\d+)/reviews',reviewValidators, asyncHandler(async (req
   const  { userId } = req.session.auth;
   const gameId = parseInt(req.params.id, 10);
   const games = await Game.findByPk(gameId);
-  console.log(rating)
   let errors = [];
   const validatorErrors = validationResult(req);
   const review = await Review.build({ content, gameId, userId, rating })
@@ -48,17 +47,34 @@ router.post('/games/:id(\\d+)/reviews',reviewValidators, asyncHandler(async (req
 
 //edit
 router.get('/reviews/:id(\\d+)/edit', asyncHandler(async (req, res) => {
-  const reviewId = parseInt(req.params.id, 10);
-  const review = await Review.findByPk();
+  const review = await Review.findAll();
   const gameId = parseInt(req.params.id, 10);
   const games = await Game.findByPk(gameId)
+  const h1ReviewHeader = document.getElementsByClassName('review-welcome')
+  h1ReviewHeader.innerText = 'Edit your review'
   res.render('review-add', {review, games});
 }));
 
 
-router.post('/reviews/:id(\\d+)/edit', asyncHandler(async (req, res) => {
-  const review = Review.build();
-  res.render('review-add', {review});
+router.post('/reviews/:id(\\d+)/edit',reviewValidators, asyncHandler(async (req, res) => {
+  const { content, rating } = req.body
+  const  { userId } = req.session.auth;
+  const gameId = parseInt(req.params.id, 10);
+  const games = await Game.findByPk(gameId);
+  let errors = [];
+  const validatorErrors = validationResult(req);
+  const review = await Review.build({ content, gameId, userId, rating })
+
+
+  if(validatorErrors.isEmpty()){
+    await review.save()
+    return res.redirect(`/games/${gameId}`);
+  }else {
+    errors = validatorErrors.array().map((error) => error.msg);
+    res.render('review-add',{
+     games, errors, review}
+    );
+  }
 }));
 
 
