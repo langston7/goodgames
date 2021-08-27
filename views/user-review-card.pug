@@ -1,9 +1,9 @@
 div(class="user-review-container")
   div(class="top-row")
     h2(class="user-reviews-title") Your Review
-    form(action=`/games/${game.id}/reviews/new` method='get' class='edit-review-button')
+    form(action=`/games/${game.id}/reviews/${userReview.id}/edit` method='POST' class='edit-review-button')
       button(class="edit-review-button") Edit
-    form(action=`/games/${game.id}/reviews/new` method='get' class='delete-review-button')
+    form(action=`/games/${game.id}/reviews/${userReview.id}/delete` method='POST' class='delete-review-button')
       button(class="delete-review-button") Delete
   div(class="bottom-row")
     table(class="user-review-table")
@@ -11,8 +11,7 @@ div(class="user-review-container")
         th Username
         th Comment
         th Rating
-      each review in reviews
-        tr(class="review-comment")
-          th(class="review-userId") #{user.username}
-          th(class="review-content") #{review.content}
-          th(class="review-rating") #{review.rating}
+      tr(class="review-comment")
+        th(class="review-userId") #{user.username}
+        th(class="review-content") #{userReview.content}
+        th(class="review-rating") #{userReview.rating}

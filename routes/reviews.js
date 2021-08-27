@@ -91,6 +91,15 @@ router.post('/games/:gameid(\\d+)/reviews/:reviewid(\\d+)/edit', reviewValidator
   if (validatorErrors.isEmpty()) {
     if (review) {
       await review.update({ content, rating });
+
+      // recalculate average rating for that game
+      const allReviews = await Review.findAll({ where: { gameId } });
+      const ratingsArray = allReviews.map(review => review.rating);
+      const total = ratingsArray.reduce((accum, rating) => accum + rating)
+      const numberOfRatings = ratingsArray.length
+      const averageRating = total/numberOfRatings;
+      games.update({ rating: averageRating });
+
       return res.redirect(`/games/${gameId}`);
     } else {
       const error = new Error('Review does not exist')
@@ -104,8 +113,23 @@ router.post('/games/:gameid(\\d+)/reviews/:reviewid(\\d+)/edit', reviewValidator
     }
     );
   }
-
 }));
+
+
+router.post('/games/:gameId/reviews/:reviewId/delete', asyncHandler(async(req, res, next) => {
+  const reviewId = req.params.reviewId;
+  const gameId = req.params.gameId;
+  const reviewToDestroy = await Review.findByPk(reviewId);
+
+  if (reviewToDestroy) {
+    await reviewToDestroy.destroy();
+    res.redirect(`/games/${gameId}`)
+  } else {
+    const error = new Error('The review you\'re trying to delete doesn\'t exist.');
+    error.status = 404;
+    next(error);
+  }
+}))
 
 
 

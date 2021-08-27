@@ -14,8 +14,9 @@ router.get('/', asyncHandler(async (req, res) => {
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     const gameId = parseInt(req.params.id, 10);
     const game = await Game.findByPk(gameId);
-    const reviews = await Review.findAll({
-        where: { gameId }
+    let reviews = await Review.findAll({
+        where: { gameId },
+        include: User
     });
  
     if (req.session.auth) {
@@ -31,10 +32,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
             }
         });
 
-
         const user = await User.findOne({ where: userId })
-
-
 
         const ownedShelves = [];
 
@@ -52,6 +50,10 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
                     break;
                 }
             }
+        }
+        
+        if (userReview) {
+            reviews = reviews.filter(review => review.id !== userReview.id);
         }
         
         return res.render('game-info', {game, gameshelves, ownedShelves, reviews, user, userReview});
