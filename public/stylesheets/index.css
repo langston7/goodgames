@@ -89,6 +89,11 @@ a:not(.nav-container a){
     font-family: 'Ramabhadra', sans-serif;
     text-decoration: none;
     padding: 0 10px;
+    transition: background-color .3s;
+}
+
+.nav-link:hover:not(#welcome-message){
+    background-color: whitesmoke;
 }
 
 .user-container {
@@ -103,9 +108,15 @@ a:not(.nav-container a){
 .user-link {
     font-family: 'Rajdhani', sans-serif;
     text-decoration: none;
+    border-radius: 5px;
     /* padding: 0 10px; */
     font-size: 20px;
     font-weight: bolder;
+    transition: background-color .3s;
+}
+
+.user-link:hover:not(#welcome-message, .divider){
+    background-color: whitesmoke;
 }
 
 .divider {

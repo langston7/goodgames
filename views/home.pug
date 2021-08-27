@@ -5,5 +5,26 @@ append head
   //- link(rel="stylesheet" href="/stylesheets/index.css")
   //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
+  link(rel="stylesheet" href="/stylesheets/game-info.css")
+  link(rel="stylesheet" href="/stylesheets/home.css")
+
 
 block content
+  div(class="index-body-container")
+    div(class="index-left-container") CURRENTLY PLAYING
+      div(class="index-currently-playing")
+      a(href=href=`games/${currGameId}`): img(src=currImgURL)
+    div(class="index-middle-container")
+      div(class="reccommendations") RECOMMENDED FOR YOU
+        include game-small-card.pug
+    div(class="index-right-container")
+      div(class="index-reviews") Find out what people are saying
+        div MAYBE REVIEWS GO HERE
+      div(class="site-info")
+        ul(class="index-devs") DEVELOPERS
+          li Jason
+          li Eric
+          li Lee
+          li Daniel
+        ul(class="index-links") CONTACT
+          li About Us

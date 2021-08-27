@@ -1,8 +1,9 @@
 extends layout
 
-append head 
+append head
     link(rel="stylesheet" href="/stylesheets/games.css")
 
 block content
     each game in games
-        include game-small-card.pug
+        div(class="card-container")
+            include game-small-card.pug
