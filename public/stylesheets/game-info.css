@@ -148,9 +148,6 @@
   padding-top: 20px;
 }
 
-.review-comment {
-  padding-top: 100px;
-}
 
 .review-userId {
   width: 200px;
@@ -172,4 +169,67 @@
   font-weight: normal;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+/* User Review */
+.user-review-container {
+  width: 800px;
+  height: fit-content;
+  margin: 0 auto;
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  background-color: #f3f3f3;
+  font-family: 'Merriweather', serif;
+  border-radius: 5px;
+  position: relative;
+  padding: 10px;
+}
+
+.top-row {
+  display: flex;
+  flex-direction: row;
+  width: 780px;
+}
+
+.user-reviews-title {
+  width: 450px;
+  font-size: large;
+  font-weight: bolder;
+  text-align: right;
+}
+
+button > .edit-review-button {
+  padding-left: 50px;
+}
+
+.edit-review-button, .delete-review-button {
+  border-radius: 20px;
+  border: none;
+  background-color: rgb(255, 105, 51);
+  width: 100px;
+  height: 20px;
+  color:white;
+  text-align: center;
+  font-size: 15px;
+}
+
+form.edit-review-button, form.delete-review-button {
+  margin: 5px;
+  margin-left: 110px;
+}
+
+form.delete-review-button {
+  margin: 5px;
+  margin-left: 10px;
+}
+
+/* .bottom-row {
+  display: flex;
+  flex-direction: column;
+} */
+
+.user-review-table {
+  width: 780px;
+  padding-top: 20px;
 }
