@@ -32,6 +32,32 @@ document.addEventListener("DOMContentLoaded", event => {
         method: "DELETE",
       });
 
+
+
+      // const res = await fetch(`/gameshelves/api/${shelfId}`);
+      // const resObj = await res.json();
+      // console.log(resObj);
+      // const shelfName = resObj.shelfName;
+
+      const targetLink = document.querySelector('#currently-visiting');
+      const currentText = targetLink.innerText;
+      const currentTextArray = currentText.split(' ');
+      const shelfNameArray = currentTextArray.slice(0, (currentTextArray.length - 1))
+      const shelfName = shelfNameArray.join(' ');
+      const numberWithParentheses = currentTextArray[currentTextArray.length - 1].split('');
+      const number = parseInt(numberWithParentheses[1], 10);
+
+      const allLink = document.querySelector('.all-link');
+      const allLinkText = allLink.innerText;
+      const allLinkTextArray = allLinkText.split(' ');
+      const allLinkNameArray = allLinkTextArray.slice(0, (currentTextArray.length - 1))
+      const allLinkName = allLinkNameArray[0];
+      const allLinkNumberWithParentheses = allLinkTextArray[allLinkTextArray.length - 1].split('');
+      const allLinkNumber = parseInt(allLinkNumberWithParentheses[1], 10);
+
+      targetLink.innerText = `${shelfName} (${number - 1})`;
+      allLink.innerText = `${allLinkName} (${allLinkNumber - 1})`
+
       const currentContainer = document.querySelector(`div[data-gameid="${gameId}"]`);
       currentContainer.remove();
     })
