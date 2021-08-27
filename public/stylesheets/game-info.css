@@ -104,6 +104,10 @@
   font-size: 1rem;
 }
 
+.review-button-redirect:hover {
+  cursor: pointer;
+}
+
 .add-to-game-shelf-button{
   border-radius: 20px;
   border: none;
@@ -111,6 +115,11 @@
   color:white;
   font-size: 1rem;
   margin-top: 5px;
+  padding: 3px 0;
+}
+
+.add-to-game-shelf-button:hover {
+  cursor: pointer;
 }
 
 /* Review Section */
@@ -203,6 +212,11 @@ button > .edit-review-button {
   color:white;
   text-align: center;
   font-size: 15px;
+}
+
+.edit-review-button:hover,
+.delete-review-button:hover {
+  cursor: pointer;
 }
 
 form.edit-review-button, form.delete-review-button {
