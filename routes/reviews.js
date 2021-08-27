@@ -8,82 +8,89 @@ const { csrfProtection, asyncHandler } = require('../utils');
 
 //get
 router.get('/games/:id(\\d+)/reviews/new', asyncHandler(async (req, res) => {
-    const review = await Review.build();
-    const gameId = parseInt(req.params.id, 10);
-    const games = await Game.findByPk(gameId)
-    res.render('review-add', {review, games});
+  const review = await Review.build();
+  const gameId = parseInt(req.params.id, 10);
+  const games = await Game.findByPk(gameId)
+  res.render('review-add', { review, games });
 }));
 
 
 const reviewValidators = [
   check('content')
-    .exists({checkFalsy: true})
+    .exists({ checkFalsy: true })
     .withMessage('Please provide a review')
-    .isLength({ min: 5})
+    .isLength({ min: 5 })
     .withMessage('review must contain more than 5 characters'),
   check('rating')
-    .exists({checkFalsy: true})
+    .exists({ checkFalsy: true })
     .withMessage('Please provide a rating')
 ]
 
 
 //post new
-router.post('/games/:id(\\d+)/reviews',reviewValidators, asyncHandler(async (req, res) => {
+router.post('/games/:id(\\d+)/reviews', reviewValidators, asyncHandler(async (req, res) => {
   const { content, rating } = req.body
-  const  { userId } = req.session.auth;
+  const { userId } = req.session.auth;
   const gameId = parseInt(req.params.id, 10);
   const games = await Game.findByPk(gameId);
   let errors = [];
   const validatorErrors = validationResult(req);
   const review = await Review.build({ content, gameId, userId, rating })
 
-  if(validatorErrors.isEmpty()){
+  if (validatorErrors.isEmpty()) {
     await review.save();
 
-    const allReviews = await Review.findAll({where: {gameId}});
+    const allReviews = await Review.findAll({ where: { gameId } });
     const ratingsArray = allReviews.map(review => review.rating);
-    const averageRating = (ratingsArray.reduce((accum, rating) => accum + rating))/ratingsArray.length;
+    const averageRating = (ratingsArray.reduce((accum, rating) => accum + rating)) / ratingsArray.length;
     games.update({ rating: averageRating });
 
     return res.redirect(`/games/${gameId}`);
-  }else {
+  } else {
     errors = validatorErrors.array().map((error) => error.msg);
-    res.render('review-add',{
-     games, errors, review}
+    res.render('review-add', {
+      games, errors, review
+    }
     );
   }
 }));
 
 //edit
-router.get('/reviews/:id(\\d+)/edit', asyncHandler(async (req, res) => {
-  const review = await Review.findAll();
-  const gameId = parseInt(req.params.id, 10);
+router.get('/games/:gameid(\\d+)/reviews/:reviewid(\\d+)/edit', asyncHandler(async (req, res) => {
+  const reviewId = parseInt(req.params.reviewid, 10);
+  const gameId = parseInt(req.params.gameid, 10);
+  const review = await Review.findByPk(reviewId)
   const games = await Game.findByPk(gameId)
-  const h1ReviewHeader = document.getElementsByClassName('review-welcome')
-  h1ReviewHeader.innerText = 'Edit your review'
-  res.render('review-add', {review, games});
+  res.render('edit-review', { review, games });
 }));
 
 
-router.post('/reviews/:id(\\d+)/edit',reviewValidators, asyncHandler(async (req, res) => {
+router.post('/games/:gameid(\\d+)/reviews/:reviewid(\\d+)/edit', reviewValidators, asyncHandler(async (req, res, next) => {
   const { content, rating } = req.body
-  const  { userId } = req.session.auth;
-  const gameId = parseInt(req.params.id, 10);
+  const reviewId = parseInt(req.params.reviewid, 10);
+  const gameId = parseInt(req.params.gameid, 10);
   const games = await Game.findByPk(gameId);
   let errors = [];
   const validatorErrors = validationResult(req);
-  const review = await Review.build({ content, gameId, userId, rating })
+  const review = await Review.findByPk(reviewId)
 
-
-  if(validatorErrors.isEmpty()){
-    await review.save()
-    return res.redirect(`/games/${gameId}`);
-  }else {
+  if (validatorErrors.isEmpty()) {
+    if (review) {
+      await review.update({ content, rating });
+      return res.redirect(`/games/${gameId}`);
+    } else {
+      const error = new Error('Review does not exist')
+      error.status = 404
+      next(error)
+    }
+  } else {
     errors = validatorErrors.array().map((error) => error.msg);
-    res.render('review-add',{
-     games, errors, review}
+    res.render('edit-review', {
+      games, errors, review
+    }
     );
   }
+
 }));
 
 
