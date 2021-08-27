@@ -24,6 +24,7 @@ block content
             div(class="rating-average") Rating: #{games.rating}/5
         div(class="game-content")
           h2(class='game-title') #{games.name}
+          a(href=`/games/${games.id}` id="return-link") Back to game
           span(class='releaseDate') Release Date: #{games.releaseDate.toLocaleDateString()}
           span(class='developer') Developer: #{games.developer}
       div(class="bottom-row")

@@ -83,6 +83,7 @@
   align-content: flex-end;
 }
 
+
 .review-box {
   margin-top: 15px;
   margin-bottom: 15px;
@@ -134,4 +135,10 @@
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
     color: #deb217;
+}
+
+#return-link {
+  position: relative;
+  bottom: 20px;
+  font-size: 14px;
 }
