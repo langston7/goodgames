@@ -1,4 +1,13 @@
-div(class="review-list")
-  each review in reviews
-    p(class="content") review:#{review.content} review:#{review.rating} username:#{user.username}
-
+div(class="review-container")
+  div(class="header")
+    h2(class="reviews-title") Reviews
+    table(class="review-table")
+      tr
+        th Username
+        th Comment
+        th Rating
+      each review in reviews
+        tr(class="review-comment")
+          th(class="review-userId") #{review.userId}
+          th(class="review-content") #{review.content}
+          th(class="review-rating") #{review.rating}
