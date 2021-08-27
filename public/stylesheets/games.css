@@ -8,11 +8,17 @@
   justify-content: center;
 }
 
+.card-container{
+  border-bottom: solid 2px #7D8CA3;
+  margin: 0 auto;
+}
+
 .game-info-container{
   width: 700px;
   height: fit-content;
   margin: 0 auto;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
+  margin-top: 30px;
   display: flex;
   background-color: #ffffff;
   font-family: 'Merriweather', serif;
