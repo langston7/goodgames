@@ -11,7 +11,7 @@ block content
   div(class="outer-container")
     div(class="shelf-list-container")
       h2(class="shelf-list-header") My Shelves
-      a(class="shelf-link" href=`/gameshelves`) All (#{allUserGames.length})
+      a(class="shelf-link" id="all-link" href=`/gameshelves`) All (#{allUserGames.length})
       ul(class="shelf-list")
         each shelf in shelves
           if shelf.name === 'Played' || shelf.name === 'Currently Playing' || shelf.name === 'Want To Play'
