@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&family=Ramabhadra&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
+
+.anon-home-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.anon-home-header-2{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 50px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+}
+.anon-home-header-3{
+
+}
+.anon-home-header-4{
+
+}
+
+.anon-home-p-section{
+  display: flex;
+  max-width: 800px;
+}
+
+.header-3-div{
+  margin: 30px;
+}
+
+
+.anon-home-p{
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.scroll-container{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color:#c7cad3;
+  width: 400px;
+  height: 250px;
+  align-items: center;
+  border-radius: 10px;
+  margin-bottom: 60px;
+}
+
+.scroll-bar{
+  display:flex;
+  width: 300px;
+  height: 170px;
+  overflow-x: scroll;
+}
+
+
+.game-thumbnail{
+  display:inline-block;
+  height:120px;
+  margin: 10px;
+}
+
+.scroll-header{
+  padding-right: 120px;
+  font-style: italic;
+}

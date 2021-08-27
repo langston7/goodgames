@@ -5,20 +5,37 @@ const { check, validationResult } = require('express-validator');
 const { loginUser, logoutUser } = require('../auth');
 const bcrypt = require('bcryptjs')
 const { csrfProtection, asyncHandler } = require('../utils');
+const { Op } = require('sequelize');
 
 /* GET home page. */
 router.get('/', asyncHandler(async (req, res, next) => {
-  const { userId } = req.session.auth;
-  min = Math.ceil(1);
-  max = Math.floor(17);
-  const randomGameId = Math.floor(Math.random() * (max - min) + min);
-  const game = await Game.findByPk(randomGameId);
+  if(req.session.auth){
+    const { userId } = req.session.auth;
+    min = Math.ceil(1);
+    max = Math.floor(17);
+    const randomGameId = Math.floor(Math.random() * (max - min) + min);
+    const game = await Game.findByPk(randomGameId);
 
-  const currShelf = await GameShelf.findOne({where: {name:"Currently Playing", userId:userId}, include: {model:Game}})
-  const currImgURL = currShelf.Games[0].imgURL;
-  const currGameId = currShelf.Games[0].id;
+    const currShelf = await GameShelf.findOne({where: {name:"Currently Playing", userId:userId}, include: {model:Game}})
+    const currImgURL = currShelf.Games[0].imgURL;
+    const currGameId = currShelf.Games[0].id;
 
-  res.render('home', { title: 'a/A Express Skeleton Home', game, currImgURL, currGameId });
+    res.render('home', { title: 'a/A Express Skeleton Home', game, currImgURL, currGameId });
+  } else {
+    const games = await Game.findAll();
+    res.render('home-anon', { games });
+  }
+}));
+
+router.post('/search', asyncHandler(async(req, res, next) => {
+
+  const {search} = req.body;
+  const games = await Game.findAll({
+    where: {
+      name: {[Op.iLike]: `%${search}%`}
+    }
+  });
+  res.render('search-results', {games, search})
 }));
 
 router.get('/login', csrfProtection, asyncHandler(async (req, res) => {
