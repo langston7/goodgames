@@ -11,15 +11,17 @@ block content
   div(class="outer-container")
     div(class="shelf-list-container")
       h2(class="shelf-list-header") My Shelves
+      a(class="shelf-link" href=`/gameshelves`) All (#{allUserGames.length})
       ul(class="shelf-list")
         each shelf in shelves
-          a(href=`/gameshelves/${shelf.id}`): li(class="shelf-link")= shelf.name
+          div(class="link-row")
+            a(href=`/gameshelves/${shelf.id}`): li(class="shelf-link") #{shelf.name} (#{shelf.Games.length})
       form(action ="/gameshelves/new" method="post" class="new-shelf")
         h1(class="shelf-new-header") Add a New Shelf:
         input(class="shelf-input" type=text name="shelfName")
         button(class="shelf-button") Create
     div(class="gameshelf-games-container")
       ul(class="gameshelf-games")
-        each game in allUserGames
+        each game in shelfGames
           include game-small-card.pug
     div(class="empty-box")
