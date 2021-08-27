@@ -17,9 +17,12 @@ router.get('/', asyncHandler(async (req, res, next) => {
     const game = await Game.findByPk(randomGameId);
 
     const currShelf = await GameShelf.findOne({where: {name:"Currently Playing", userId:userId}, include: {model:Game}})
-    const currImgURL = currShelf.Games[0].imgURL;
-    const currGameId = currShelf.Games[0].id;
-
+    let currImgURL;
+    let currGameId;
+    if(currShelf.Games[0]){
+      currImgURL = currShelf.Games[0].imgURL;
+      currGameId = currShelf.Games[0].id;
+    }
     res.render('home', { title: 'a/A Express Skeleton Home', game, currImgURL, currGameId });
   } else {
     const games = await Game.findAll();

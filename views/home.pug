@@ -8,6 +8,8 @@ append head
 block content
   div(class="index-body-container")
     div(class="index-left-container") CURRENTLY PLAYING
+      if !currGameId
+        div You're currently not playing anything.
       div(class="index-currently-playing")
       a(href=href=`games/${currGameId}`): img(src=currImgURL)
     div(class="index-middle-container")
