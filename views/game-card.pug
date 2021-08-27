@@ -12,7 +12,10 @@ div(class="game-info-container")
         h2(class='game-info-header') #{game.name}
         span(class='releaseDate') Release Date: #{game.releaseDate.toLocaleDateString()}
         span(class='developer') By #{game.developer}
-        div(class="rating") 3.5/5
+        if game.rating === null 
+          div(class="rating") Rating: Unrated 
+        else
+          div(class="rating") Rating: #{game.rating}/5
       div(class="played-status")
         ul(class="played-status-list")
           if authenticated

@@ -8,7 +8,7 @@ block content
 
 
   div(class="review-container")
-    form(action=`/games/${games.id}/reviews` method="post" class="review-form")
+    form(action=`/games/${games.id}/reviews/${review.id}/edit` method="post" class="review-form-edit")
       if errors
           div(role='alert')
             p The Following errors occurred:
@@ -28,9 +28,9 @@ block content
           span(class='developer') Developer: #{games.developer}
       div(class="bottom-row")
         div(class="review-field")
-          h1(class="review-welcome") Give us your review
+          h1(class="review-welcome") Edit your review
             div(class="rate")
-              if review.rating === '5'
+              if review.rating === 5
                 input(type="radio" id="star5" name="rating" value="5" checked)           
                 label(for="star5" title="text">5 stars)
                 input(type="radio" id="star4" name="rating" value="4")             
@@ -41,7 +41,7 @@ block content
                 label(for="star2" title="text">2 stars)
                 input(type="radio" id="star1" name="rating" value="1")             
                 label(for="star1" title="text">1 star)
-              if review.rating === '4'
+              if review.rating === 4
                 input(type="radio" id="star5" name="rating" value="5")           
                 label(for="star5" title="text">5 stars)
                 input(type="radio" id="star4" name="rating" value="4" checked)             
@@ -52,7 +52,7 @@ block content
                 label(for="star2" title="text">2 stars)
                 input(type="radio" id="star1" name="rating" value="1")             
                 label(for="star1" title="text">1 star)
-              if review.rating === '3'
+              if review.rating === 3
                 input(type="radio" id="star5" name="rating" value="5")           
                 label(for="star5" title="text">5 stars)
                 input(type="radio" id="star4" name="rating" value="4")             
@@ -63,7 +63,7 @@ block content
                 label(for="star2" title="text">2 stars)
                 input(type="radio" id="star1" name="rating" value="1")             
                 label(for="star1" title="text">1 star)
-              if review.rating === '2'
+              if review.rating === 2
                 input(type="radio" id="star5" name="rating" value="5")           
                 label(for="star5" title="text">5 stars)
                 input(type="radio" id="star4" name="rating" value="4")             
@@ -74,7 +74,7 @@ block content
                 label(for="star2" title="text">2 stars)
                 input(type="radio" id="star1" name="rating" value="1")             
                 label(for="star1" title="text">1 star)
-              if review.rating === '1'
+              if review.rating === 1
                 input(type="radio" id="star5" name="rating" value="5")           
                 label(for="star5" title="text">5 stars)
                 input(type="radio" id="star4" name="rating" value="4")             

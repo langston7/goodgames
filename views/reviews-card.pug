@@ -1,7 +1,6 @@
-div(class="review-container")
-  div(class="header")
-    h2(class="Comments-") Comments
-  div(class="")
+div(class="review-list")
+  each review in reviews
+    p(class="content") review:#{review.content} review:#{review.rating} username:#{user.username}
 
 
 
