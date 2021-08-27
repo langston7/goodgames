@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", event => {
-  const gamesList = document.querySelectorAll('.gameshelf-games > div');
+  const gamesList = document.querySelectorAll('a[class="game-link"] > div');
   const gamesListArray = Array.from(gamesList);
   const testurl = window.location.pathname;
   const urlArray = testurl.split('/');
-
+  
   const shelfId = urlArray[2];
 
   for (let i = 0; i < gamesListArray.length; i++) {
