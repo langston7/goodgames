@@ -23,16 +23,6 @@ const reviewValidators = [
     .withMessage('review must contain more than 5 characters')
 ]
 
-// Calculate average reviews
-const getAverageReviews = async(game) => {
-  const gameId = game.id;
-  const allReviews = await Review.findAll({where: {gameId}});
-  const ratingsArray = allReviews.map(review => review.rating);
-  const averageRating = (ratingsArray.reduce((accum, rating) => accum + rating))/ratingsArray.length;
-  return averageRating;
-}
-
-
 
 //post new
 router.post('/games/:id(\\d+)/reviews',reviewValidators, asyncHandler(async (req, res) => {
