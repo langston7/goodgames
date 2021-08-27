@@ -35,6 +35,5 @@ document.addEventListener("DOMContentLoaded", event => {
       const currentContainer = document.querySelector(`div[data-gameid="${gameId}"]`);
       currentContainer.remove();
     })
-    //<span class="material-icons-outlined">delete</span>
   }
 })

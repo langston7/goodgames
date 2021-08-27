@@ -14,8 +14,13 @@ block content
       a(class="shelf-link" href=`/gameshelves`) All (#{allUserGames.length})
       ul(class="shelf-list")
         each shelf in shelves
-          div(class="link-row")
-            a(href=`/gameshelves/${shelf.id}`): li(class="shelf-link") #{shelf.name} (#{shelf.Games.length})
+          if shelf.name === 'Played' || shelf.name === 'Currently Playing' || shelf.name === 'Want To Play'
+            div(class=`link-row-${shelf.id} link-row`)
+              a(href=`/gameshelves/${shelf.id}`): li(class="shelf-link") #{shelf.name} (#{shelf.Games.length})
+          else 
+            div(class=`link-row-${shelf.id} link-row`)
+              a(href=`/gameshelves/${shelf.id}`): li(class="shelf-link") #{shelf.name} (#{shelf.Games.length})
+              a(href="#" class="delete-link" data-shelfid= shelf.id): span(class="material-icons") close  
       form(action ="/gameshelves/new" method="post" class="new-shelf")
         h1(class="shelf-new-header") Add a New Shelf:
         input(class="shelf-input" type=text name="shelfName")
