@@ -29,8 +29,11 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async(req, res, next) => {
   const shelf = await GameShelf.findOne({where: {id: shelfId}, include: Game})
 
   if (shelf.userId === userId) {
+    const nestedGames = [];
+    shelves.forEach(shelf => nestedGames.push(shelf.Games))
+    const allUserGames = nestedGames.flat();
     const shelfGames = shelf.Games;
-    res.render('gameshelf-info', { shelves, allUserGames: shelfGames })
+    res.render('gameshelf-info', { shelves, allUserGames, shelfGames })
   } else {
     const err = new Error('Unauthorized request');
     err.status = 403;
@@ -102,8 +105,10 @@ router.post('/new', asyncHandler(async(req, res) => {
   const { shelfName } = req.body;
   const { userId } = req.session.auth;
 
-  await GameShelf.create({name: shelfName, userId: userId});
-  res.json();
+  const newShelf = await GameShelf.create({name: shelfName, userId: userId});
+
+  const newShelfId = newShelf.id;
+  res.json({newShelfId});
 }));
 
 
