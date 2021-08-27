@@ -41,9 +41,7 @@ router.post('/games/:id(\\d+)/reviews', reviewValidators, asyncHandler(async (re
 
   //if there are reviews for that game, and if one of the reviews has a userId of the current user, then add an error to the errors array with a message
   if (gameReviews.length) {
-    console.log(gameReviews);
     const userReview = gameReviews.filter(review => review.userId == userId);
-    console.log(userReview);
     if (userReview.length) {
       errors.push('You already submitted a review for this game');
     } 
@@ -56,7 +54,9 @@ router.post('/games/:id(\\d+)/reviews', reviewValidators, asyncHandler(async (re
 
     const allReviews = await Review.findAll({ where: { gameId } });
     const ratingsArray = allReviews.map(review => review.rating);
-    const averageRating = (ratingsArray.reduce((accum, rating) => accum + rating)) / ratingsArray.length;
+    const total = ratingsArray.reduce((accum, rating) => accum + rating)
+    const numberOfRatings = ratingsArray.length
+    const averageRating = total/numberOfRatings;
     games.update({ rating: averageRating });
 
     return res.redirect(`/games/${gameId}`);
