@@ -23,6 +23,16 @@ const reviewValidators = [
     .withMessage('review must contain more than 5 characters')
 ]
 
+// Calculate average reviews
+const getAverageReviews = async(game) => {
+  const gameId = game.id;
+  const allReviews = await Review.findAll({where: {gameId}});
+  const ratingsArray = allReviews.map(review => review.rating);
+  const averageRating = (ratingsArray.reduce((accum, rating) => accum + rating))/ratingsArray.length;
+  return averageRating;
+}
+
+
 
 //post new
 router.post('/games/:id(\\d+)/reviews',reviewValidators, asyncHandler(async (req, res) => {
@@ -30,13 +40,18 @@ router.post('/games/:id(\\d+)/reviews',reviewValidators, asyncHandler(async (req
   const  { userId } = req.session.auth;
   const gameId = parseInt(req.params.id, 10);
   const games = await Game.findByPk(gameId);
-  console.log(rating)
   let errors = [];
   const validatorErrors = validationResult(req);
   const review = await Review.build({ content, gameId, userId, rating })
 
   if(validatorErrors.isEmpty()){
-    await review.save()
+    await review.save();
+
+    const allReviews = await Review.findAll({where: {gameId}});
+    const ratingsArray = allReviews.map(review => review.rating);
+    const averageRating = (ratingsArray.reduce((accum, rating) => accum + rating))/ratingsArray.length;
+    games.update({ rating: averageRating });
+
     return res.redirect(`/games/${gameId}`);
   }else {
     errors = validatorErrors.array().map((error) => error.msg);
