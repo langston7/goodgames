@@ -35,9 +35,23 @@ router.post('/games/:id(\\d+)/reviews',reviewValidators, asyncHandler(async (req
   const games = await Game.findByPk(gameId);
   let errors = [];
   const validatorErrors = validationResult(req);
+
+  //find all reviews for that game
+  const gameReviews = await Review.findAll({where: {gameId}});
+
+  //if there are reviews for that game, and if one of the reviews has a userId of the current user, then add an error to the errors array with a message
+  if (gameReviews) {
+    console.log(gameReviews);
+    const userReview = gameReviews.filter(review => review.userId == userId);
+    console.log(userReview);
+    if (userReview) {
+      errors.push('You already submitted a review for this game');
+    } 
+  }
+
   const review = await Review.build({ content, gameId, userId, rating })
 
-  if(validatorErrors.isEmpty()){
+  if(validatorErrors.isEmpty() && !errors.length){
     await review.save();
 
     const allReviews = await Review.findAll({where: {gameId}});
@@ -47,7 +61,8 @@ router.post('/games/:id(\\d+)/reviews',reviewValidators, asyncHandler(async (req
 
     return res.redirect(`/games/${gameId}`);
   }else {
-    errors = validatorErrors.array().map((error) => error.msg);
+    validatorErrors.array().forEach(error => errors.push(error.msg));
+    // errors = validatorErrors.array().map((error) => error.msg);
     res.render('review-add',{
      games, errors, review}
     );
