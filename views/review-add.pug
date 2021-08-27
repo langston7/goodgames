@@ -18,7 +18,10 @@ block content
       div(class="top-row")
         div(class="img-div")
           img(class="game-img" src= games.imgURL) 
-          div(class="rating-average") 5/5
+          if games.rating === null 
+            div(class="rating-average") Rating: Unrated 
+          else
+            div(class="rating-average") Rating: #{games.rating}/5
         div(class="game-content")
           h2(class='game-title') #{games.name}
           span(class='releaseDate') Release Date: #{games.releaseDate.toLocaleDateString()}
