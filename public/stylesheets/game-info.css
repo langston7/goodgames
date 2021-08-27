@@ -214,6 +214,11 @@ button > .edit-review-button {
   font-size: 15px;
 }
 
+.edit-review-button:hover,
+.delete-review-button:hover {
+  cursor: pointer;
+}
+
 form.edit-review-button, form.delete-review-button {
   margin: 5px;
   margin-left: 110px;
