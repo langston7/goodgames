@@ -20,7 +20,7 @@ const reviewValidators = [
     .exists({ checkFalsy: true })
     .withMessage('Please provide a review')
     .isLength({ min: 5 })
-    .withMessage('review must contain more than 5 characters'),
+    .withMessage('Your Review must contain more than 5 characters'),
   check('rating')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a rating')
@@ -44,7 +44,7 @@ router.post('/games/:id(\\d+)/reviews', reviewValidators, asyncHandler(async (re
     const userReview = gameReviews.filter(review => review.userId == userId);
     if (userReview.length) {
       errors.push('You already submitted a review for this game');
-    } 
+    }
   }
 
   const review = await Review.build({ content, gameId, userId, rating })

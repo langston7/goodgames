@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { User, GameShelf, Game } = require('../db/models')
+const { User, GameShelf, Game, Review } = require('../db/models')
 const { check, validationResult } = require('express-validator');
 const { loginUser, logoutUser } = require('../auth');
 const bcrypt = require('bcryptjs')
@@ -11,11 +11,15 @@ const { Op } = require('sequelize');
 router.get('/', asyncHandler(async (req, res, next) => {
   if(req.session.auth){
     const { userId } = req.session.auth;
-    min = Math.ceil(1);
-    max = Math.floor(17);
+
+    /* fetch and display random game from databse for pseudo recommendation */
+    const allGames = await Game.findAll();
+    let min = Math.ceil(1);
+    let max = Math.floor(allGames.length+1);
     const randomGameId = Math.floor(Math.random() * (max - min) + min);
     const game = await Game.findByPk(randomGameId);
 
+    /* fetch and display first game in users currently playing list */
     const currShelf = await GameShelf.findOne({where: {name:"Currently Playing", userId:userId}, include: {model:Game}})
     let currImgURL;
     let currGameId;
@@ -23,7 +27,17 @@ router.get('/', asyncHandler(async (req, res, next) => {
       currImgURL = currShelf.Games[0].imgURL;
       currGameId = currShelf.Games[0].id;
     }
-    res.render('home', { title: 'a/A Express Skeleton Home', game, currImgURL, currGameId });
+
+    /* fetch and display a random review */
+    const allReviews = await Review.findAll();
+    min = Math.ceil(1);
+    max = Math.floor(allReviews.length+1);
+    const randomReviewId = Math.floor(Math.random() * (max - min) + min);
+    const reviewWithUser = await Review.findOne({where: {id:randomReviewId}, include: {model:User}});
+    const reviewWithGame = await Review.findOne({where: {id:randomReviewId}, include: {model:Game}});
+
+
+    res.render('home', { title: 'a/A Express Skeleton Home', game, currImgURL, currGameId, reviewWithUser, reviewWithGame });
   } else {
     const games = await Game.findAll();
     res.render('home-anon', { games });

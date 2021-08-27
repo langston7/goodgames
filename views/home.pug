@@ -7,17 +7,24 @@ append head
 
 block content
   div(class="index-body-container")
-    div(class="index-left-container") CURRENTLY PLAYING
+    div(class="index-left-container")
+      h2(class="index-header") CURRENTLY PLAYING
       if !currGameId
         div You're currently not playing anything.
       div(class="index-currently-playing")
-      a(href=href=`games/${currGameId}`): img(src=currImgURL)
+      a(href=href=`games/${currGameId}`): img(class="currImage-tag" src=currImgURL)
     div(class="index-middle-container")
-      div(class="reccommendations") RECOMMENDED FOR YOU
+      div(class="reccommendations")
+        h2(class="index-header") RECOMMENDED FOR YOU
         include game-small-card.pug
     div(class="index-right-container")
-      div(class="index-reviews") Find out what people are saying
-        div MAYBE REVIEWS GO HERE
+      div(class="index-reviews")
+        h2(class="index-header") Find out what people are saying
+        div(class="reviews-div-container")
+          div(class="index-review-name") #{reviewWithUser.User.username} recently played #{reviewWithGame.Game.name}
+          img(class="index-review-image" src=reviewWithGame.Game.imgURL)
+          div(class="index-review-rating") #{reviewWithUser.User.username}'s Rating: #{reviewWithUser.rating}/5
+          p(class="index-review-content") #{reviewWithUser.User.username}'s Review: #{reviewWithUser.content}
       div(class="site-info")
         ul(class="index-devs") DEVELOPERS
           li Jason
