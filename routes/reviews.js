@@ -8,7 +8,7 @@ const { csrfProtection, asyncHandler } = require('../utils');
 
 //get
 router.get('/games/:id(\\d+)/reviews/new', asyncHandler(async (req, res) => {
-    const review = await Review.findAll();
+    const review = await Review.build();
     const gameId = parseInt(req.params.id, 10);
     const games = await Game.findByPk(gameId)
     res.render('review-add', {review, games});
@@ -20,7 +20,10 @@ const reviewValidators = [
     .exists({checkFalsy: true})
     .withMessage('Please provide a review')
     .isLength({ min: 5})
-    .withMessage('review must contain more than 5 characters')
+    .withMessage('review must contain more than 5 characters'),
+  check('rating')
+    .exists({checkFalsy: true})
+    .withMessage('Please provide a rating')
 ]
 
 
