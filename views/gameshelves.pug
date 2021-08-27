@@ -2,6 +2,8 @@ extends layout
 
 append head
   link(rel="stylesheet" href="/stylesheets/gameshelves.css")
+  link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
+
   if authenticated
     script(src="/javascripts/gameshelf-add.js")
 block content
@@ -9,9 +11,16 @@ block content
   div(class="outer-container")
     div(class="shelf-list-container")
       h2(class="shelf-list-header") My Shelves
+      a(class="shelf-link" id="all-link" href=`/gameshelves`) All (#{allUserGames.length})
       ul(class="shelf-list")
         each shelf in shelves
-          a(href=`/gameshelves/${shelf.id}`): li(class="shelf-link")= shelf.name
+          if shelf.name === 'Played' || shelf.name === 'Currently Playing' || shelf.name === 'Want To Play'
+            div(class=`link-row-${shelf.id} link-row`)
+              a(href=`/gameshelves/${shelf.id}`): li(class="shelf-link") #{shelf.name} (#{shelf.Games.length})
+          else 
+            div(class=`link-row-${shelf.id} link-row`)
+              a(href=`/gameshelves/${shelf.id}`): li(class="shelf-link") #{shelf.name} (#{shelf.Games.length})
+              a(href="#" class="delete-link" data-shelfid= shelf.id): span(class="material-icons") close         
       form(action ="/gameshelves/new" method="post" class="new-shelf")
         h1(class="shelf-new-header") Add a New Shelf:
         input(class="shelf-input" type=text name="shelfName")

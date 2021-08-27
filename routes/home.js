@@ -1,15 +1,25 @@
 const express = require('express');
 const router = express.Router();
-const { User, GameShelf } = require('../db/models')
+const { User, GameShelf, Game } = require('../db/models')
 const { check, validationResult } = require('express-validator');
 const { loginUser, logoutUser } = require('../auth');
 const bcrypt = require('bcryptjs')
 const { csrfProtection, asyncHandler } = require('../utils');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('home', { title: 'a/A Express Skeleton Home' });
-});
+router.get('/', asyncHandler(async (req, res, next) => {
+  const { userId } = req.session.auth;
+  min = Math.ceil(1);
+  max = Math.floor(17);
+  const randomGameId = Math.floor(Math.random() * (max - min) + min);
+  const game = await Game.findByPk(randomGameId);
+
+  const currShelf = await GameShelf.findOne({where: {name:"Currently Playing", userId:userId}, include: {model:Game}})
+  const currImgURL = currShelf.Games[0].imgURL;
+  const currGameId = currShelf.Games[0].id;
+
+  res.render('home', { title: 'a/A Express Skeleton Home', game, currImgURL, currGameId });
+}));
 
 router.get('/login', csrfProtection, asyncHandler(async (req, res) => {
   const user = await User.build()

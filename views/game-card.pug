@@ -19,3 +19,5 @@ div(class="game-info-container")
             each shelf in ownedShelves
               li= shelf
     p(class='game-info-description') #{game.description}
+    form(action=`/games/${game.id}/reviews/new` method='get' class='review-form')
+      button(class="review-button-redirect") Add Review

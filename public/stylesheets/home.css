@@ -1,0 +1,38 @@
+.index-body-container{
+  display:flex;
+  justify-content: space-between;
+}
+
+.index-left-container{
+  margin: 10px;
+
+}
+
+.index-middle-container{
+  margin: 10px;
+}
+
+.index-right-container{
+  margin: 10px;
+}
+
+.game-info-container{
+  width: 500px;
+  height: fit-content;
+}
+
+.img-div{
+  width: auto;
+}
+
+.reccommendations{
+  height: fit-content;
+}
+
+.site-info{
+  margin-top:300px;
+}
+
+.game-info-container:hover{
+  box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+}

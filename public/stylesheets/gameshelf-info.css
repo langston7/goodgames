@@ -10,11 +10,18 @@
   display:flex;
 }
 
+.card-container{
+  border-bottom: solid 2px #7D8CA3;
+  margin: 0 auto;
+  display: flex;
+}
+
 .game-info-container{
   width: 700px;
   height: fit-content;
   margin: 0 auto;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
+  margin-top:30px;
   display: flex;
   background-color: #ffffff;
   font-family: 'Merriweather', serif;
@@ -72,6 +79,8 @@
 
 .shelf-link:hover {
   text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 3px;
 }
 
 .shelf-list-container {
@@ -82,7 +91,6 @@
 
 .gameshelf-games-container {
   width: auto;
-  padding-top: 20px;
 }
 
 .shelf-list-header{
@@ -95,7 +103,6 @@
 
 .delete-button,
 .material-icons {
-  position: absolute;
   top: 5px;
   right: 5px;
   color:rgb(92, 92, 92);
@@ -104,4 +111,29 @@
 .shelf-new-header{
   margin-top: 20px;
   font-size: 20px;
+}
+
+.delete-button{
+  position: absolute;
+}
+
+.link-row {
+  display: flex;
+  justify-content: space-between;
+  max-width: 220px;
+}
+
+.delete-link{
+  width: fit-content;
+}
+
+.shelf-link {
+  overflow-wrap: break-word;
+}
+
+#currently-visiting {
+  color: black;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 3px;
 }

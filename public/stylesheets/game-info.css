@@ -89,7 +89,30 @@
   background-color: rgba(255, 166, 0, 0.637);
 }
 
-/* Reviews Section */
+.review-form{
+  display: flex;
+  justify-content:flex-end;
+}
+
+.review-button-redirect{
+  border-radius: 20px;
+  border: none;
+  background-color: rgb(255, 105, 51);
+  width:20%;
+  height: 40px;
+  color:white;
+  font-size: 1rem;
+}
+
+.add-to-game-shelf-button{
+  border-radius: 20px;
+  border: none;
+  background-color: rgb(255, 105, 51);
+  color:white;
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
 /* .review-list {
    color: black;
    background-color: red;
