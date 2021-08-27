@@ -71,6 +71,8 @@
 
 .shelf-link:hover {
   text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 3px;
 }
 
 .shelf-list-container {
@@ -123,4 +125,11 @@
 
 .shelf-link {
   overflow-wrap: break-word;
+}
+
+#all-link {
+  color: black;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 3px;
 }

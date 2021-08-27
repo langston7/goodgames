@@ -4,21 +4,21 @@ append head
   link(rel="stylesheet" href="/stylesheets/gameshelf-info.css")
   link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
   script(src="/javascripts/delete-game.js")
-  if authenticated
-    script(src="/javascripts/gameshelf-add.js")
+  script(src="/javascripts/gameshelf-add.js")
+  script(src="/javascripts/gameshelf-location-indicator.js")
 block content
   h1(class="page-header") Gameshelves
   div(class="outer-container")
     div(class="shelf-list-container")
       h2(class="shelf-list-header") My Shelves
-      a(class="shelf-link" href=`/gameshelves`) All (#{allUserGames.length})
+      a(class="shelf-link all-link" href=`/gameshelves`) All (#{allUserGames.length})
       ul(class="shelf-list")
         each shelf in shelves
           if shelf.name === 'Played' || shelf.name === 'Currently Playing' || shelf.name === 'Want To Play'
-            div(class=`link-row-${shelf.id} link-row`)
+            div(class=`link-row-${shelf.id} link-row` data-highlight-shelfid= shelf.id)
               a(href=`/gameshelves/${shelf.id}`): li(class="shelf-link") #{shelf.name} (#{shelf.Games.length})
           else 
-            div(class=`link-row-${shelf.id} link-row`)
+            div(class=`link-row-${shelf.id} link-row` data-highlight-shelfid= shelf.id)
               a(href=`/gameshelves/${shelf.id}`): li(class="shelf-link") #{shelf.name} (#{shelf.Games.length})
               a(href="#" class="delete-link" data-shelfid= shelf.id): span(class="material-icons") close  
       form(action ="/gameshelves/new" method="post" class="new-shelf")
