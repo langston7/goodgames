@@ -1,6 +1,7 @@
 extends layout.pug
 append head
   link(rel="stylesheet", href="/stylesheets/login-signup.css")
+  link(rel="stylesheet" href="/stylesheets/error-styling.css")
 
 block content
   if authenticated
@@ -9,11 +10,11 @@ block content
     div(class="login-container")
       form(action="/login" method="post" class="login-form")
         if errors
-          div(role='alert')
-            p The Following errors occurred:
-            ul
+          div(role='alert' class="error-container")
+            p(class="error-header") There's an error with your login:
+            ul(class="error-list")
               each error in errors
-                li= error
+                li(class="error-li")= error
         h2(class="login-item login-header") Sign In to Goodgames
         input(type="hidden" name="_csrf" value=csrfToken)
         label(class="login-item login-label" for="username") Username
@@ -23,5 +24,5 @@ block content
         button(class="login-item login-button") Sign in
         span(class="login-item login-label") Not a Member?
           a(class="login-item" href="/signup") Sign up
-          form(action="/guest" method="post") 
+          form(action="/guest" method="post")
             button(formaction="/guest" class="login-label login-item guest-button") Continue as guest

@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&family=Ramabhadra&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
+
+
 .index-body-container{
   display:flex;
   justify-content: space-between;
@@ -5,7 +10,6 @@
 
 .index-left-container{
   margin: 10px;
-
 }
 
 .index-middle-container{
@@ -16,6 +20,17 @@
   margin: 10px;
 }
 
+.index-currently-playing{
+  max-width: 100px;
+}
+
+.index-header{
+  font-family: 'Raleway', sans-serif;
+  font-weight: bolder;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
 .game-info-container{
   width: 500px;
   height: fit-content;
@@ -23,8 +38,16 @@
 
 .img-div{
   width: auto;
+  height: fit-content;
 }
 
+.game-content{
+  height: fit-content;
+}
+
+.currImage-tag{
+  width:200px;
+}
 .reccommendations{
   height: fit-content;
 }
@@ -35,4 +58,37 @@
 
 .game-info-container:hover{
   box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+}
+
+.index-reviews{
+  width:300px;
+}
+
+.reviews-div-container{
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 12px;
+  font-family: 'Merriweather', serif;
+}
+
+.index-review-name{
+  font-size: 12px;
+  font-family: 'Merriweather', serif;
+}
+
+.index-review-image{
+  margin-top: 10px;
+  width:100px;
+  margin-right: 0;
+}
+
+.index-review-rating{
+  margin-top: 10px;
+  font-size: 12px;
+  font-family: 'Merriweather', serif;
+}
+
+.index-review-content{
+  overflow-wrap: break-word;
 }
