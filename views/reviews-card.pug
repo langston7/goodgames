@@ -8,6 +8,6 @@ div(class="review-container")
         th Rating
       each review in reviews
         tr(class="review-comment")
-          th(class="review-userId") #{user.username}
+          th(class="review-userId") #{review.User.username}
           th(class="review-content") #{review.content}
           th(class="review-rating") #{review.rating}
