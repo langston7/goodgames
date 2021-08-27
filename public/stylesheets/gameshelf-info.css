@@ -101,7 +101,6 @@
 
 .delete-button,
 .material-icons {
-  position: absolute;
   top: 5px;
   right: 5px;
   color:rgb(92, 92, 92);
@@ -110,4 +109,22 @@
 .shelf-new-header{
   margin-top: 20px;
   font-size: 20px;
+}
+
+.delete-button{
+  position: absolute;
+}
+
+.link-row {
+  display: flex;
+  justify-content: space-between;
+  max-width: 220px;
+}
+
+.delete-link{
+  width: fit-content;
+}
+
+.shelf-link {
+  overflow-wrap: break-word;
 }

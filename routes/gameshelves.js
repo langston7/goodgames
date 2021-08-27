@@ -41,26 +41,36 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async(req, res, next) => {
   }
 }));
 
-router.delete('/:shelfId/games/:gameId', asyncHandler(async(req, res, next) => {
+router.delete('/:id(\\d+)', requireAuth, asyncHandler(async(req, res) => {
+  const shelfId = req.params.id;
+  const shelfToDestroy = await GameShelf.findByPk(shelfId);
+
+  if (shelfToDestroy) {
+    await shelfToDestroy.destroy();
+    return res.json({});
+  } else {
+    const error = new Error('Shelf does not exist');
+    error.status = 404;
+    next(error);
+  }
+}));
+
+router.delete('/:shelfId(\\d+)/games/:gameId(\\d+)', asyncHandler(async(req, res, next) => {
   const shelfId = req.params.shelfId;
   const gameId = req.params.gameId;
-  console.log('HELLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
   const recordToDestroy = await GamesToGameShelf.findOne({
     where: {gameShelfId: shelfId, gameId}
   });
 
-  console.log(recordToDestroy, 'HELLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
-  
   if (recordToDestroy) {
     await recordToDestroy.destroy();
     return res.json({});
   } else {
-    const error = new Error('Record does not exist');
+    const error = new Error('Record does not exist on that shelf');
     error.status = 404;
     next(error);
   }
-
-}))
+}));
 
 router.post('/:id(\\d+)/games', asyncHandler(async(req,res) => {
   const { shelfId, gameId } = req.body;
