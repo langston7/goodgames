@@ -40,11 +40,11 @@ router.post('/games/:id(\\d+)/reviews', reviewValidators, asyncHandler(async (re
   const gameReviews = await Review.findAll({where: {gameId}});
 
   //if there are reviews for that game, and if one of the reviews has a userId of the current user, then add an error to the errors array with a message
-  if (gameReviews) {
+  if (gameReviews.length) {
     console.log(gameReviews);
     const userReview = gameReviews.filter(review => review.userId == userId);
     console.log(userReview);
-    if (userReview) {
+    if (userReview.length) {
       errors.push('You already submitted a review for this game');
     } 
   }
