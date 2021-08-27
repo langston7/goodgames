@@ -134,13 +134,4 @@
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
     color: #deb217;
- }
-
- .review-list {
-   max-height: 1000px;
-   background-color: red;
- }
-
- .content {
-   color: blue;
- }
+}
