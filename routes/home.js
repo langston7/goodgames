@@ -142,7 +142,7 @@ router.post('/signup', csrfProtection, signUpValidators, asyncHandler(async (req
     // Create 3 gameshelves
     await GameShelf.create({ name: 'Played', userId: newUser.id, })
     await GameShelf.create({ name: 'Currently Playing', userId: newUser.id, })
-    await GameShelf.create({ name: 'Want to Play', userId: newUser.id, })
+    await GameShelf.create({ name: 'Want To Play', userId: newUser.id, })
 
     return res.redirect('/login');
   } else {
