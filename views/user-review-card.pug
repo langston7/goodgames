@@ -7,10 +7,10 @@ div(class="review-container")
         th Comment
         th Rating
         div(class='edit-delete-container')
-          form(action=`/games/${game.id}/reviews/new` method='get' class='review-form')
+          form(action=`/games/${game.id}/reviews/${userReview.id}/edit` method='get' class='review-form')
             button(class="review-button-redirect") Edit
-          form(action=`/games/${game.id}/reviews/new` method='get' class='review-form')
-            button(class="review-button-redirect") Delete
+          //- form(action=`/games/${game.id}/reviews/new` method='get' class='review-form')
+          //-   button(class="review-button-redirect") Delete
       each review in reviews
         tr(class="review-comment")
           th(class="review-userId") #{review.userId}
