@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs')
 const { csrfProtection, asyncHandler } = require('../utils');
 
 router.get('/', asyncHandler(async (req, res) => {
-    const games = await Game.findAll();
+    const games = await Game.findAll({order: [['id']]});
     res.render('games', { games });
 }));
 

@@ -79,6 +79,15 @@ a:not(.nav-container a){
     background-color: white;
 }
 
+.search-header{
+    color:black;
+    margin: 0 auto;
+    padding-right: 400px;
+    font-size: 20px;
+    font-weight: bolder;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .nav-link-container {
     width: fit-content;
     margin-left: 20px;
