@@ -8,7 +8,7 @@ const { csrfProtection, asyncHandler } = require('../utils');
 
 //get
 router.get('/games/:id(\\d+)/reviews/new', asyncHandler(async (req, res) => {
-    const review = await Review.findAll();
+    const review = await Review.build();
     const gameId = parseInt(req.params.id, 10);
     const games = await Game.findByPk(gameId)
     res.render('review-add', {review, games});
@@ -20,7 +20,10 @@ const reviewValidators = [
     .exists({checkFalsy: true})
     .withMessage('Please provide a review')
     .isLength({ min: 5})
-    .withMessage('review must contain more than 5 characters')
+    .withMessage('review must contain more than 5 characters'),
+  check('rating')
+    .exists({checkFalsy: true})
+    .withMessage('Please provide a rating')
 ]
 
 
@@ -35,7 +38,13 @@ router.post('/games/:id(\\d+)/reviews',reviewValidators, asyncHandler(async (req
   const review = await Review.build({ content, gameId, userId, rating })
 
   if(validatorErrors.isEmpty()){
-    await review.save()
+    await review.save();
+
+    const allReviews = await Review.findAll({where: {gameId}});
+    const ratingsArray = allReviews.map(review => review.rating);
+    const averageRating = (ratingsArray.reduce((accum, rating) => accum + rating))/ratingsArray.length;
+    games.update({ rating: averageRating });
+
     return res.redirect(`/games/${gameId}`);
   }else {
     errors = validatorErrors.array().map((error) => error.msg);
