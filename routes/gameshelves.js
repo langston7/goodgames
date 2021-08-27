@@ -46,6 +46,8 @@ router.delete('/:id(\\d+)', requireAuth, asyncHandler(async(req, res) => {
   const shelfToDestroy = await GameShelf.findByPk(shelfId);
 
   if (shelfToDestroy) {
+    const gamesInShelf = await GamesToGameShelf.findAll({where: {gameShelfId: shelfId}});
+    gamesInShelf.forEach(async(game) => await game.destroy());
     await shelfToDestroy.destroy();
     return res.json({});
   } else {
