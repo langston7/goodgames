@@ -27,7 +27,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
         });
 
         const reviews = await Review.findAll({
-            where: {gameId}
+            where: { gameId }
         });
 
 
@@ -49,7 +49,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
                 }
             }
         }
-        // return res.json(reviews)
+        
         return res.render('game-info', {game, gameshelves, ownedShelves, reviews});
     } else {
         return res.render('game-info', {game});
