@@ -19,6 +19,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('GameShelves', null, {});
+    return queryInterface.bulkDelete('GameShelves', null, {truncate: true, cascade: true, restartIdentity: true});
   }
 };
