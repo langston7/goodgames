@@ -10,11 +10,22 @@ const { Sequelize } = require('sequelize');
 
 /* GET home page. */
 router.get('/', asyncHandler(async (req, res, next) => {
+  const allGames = await Game.findAll();
+      /* calculate average rating for each game */
+  allGames.forEach(async(game) => {
+    const allReviews = await Review.findAll({ where: { gameId: game.id } });
+    if (allReviews.length) {
+        const ratingsArray = allReviews.map(review => review.rating);
+        const total = ratingsArray.reduce((accum, rating) => accum + rating)
+        const numberOfRatings = ratingsArray.length
+        const averageRating = total/numberOfRatings;
+        await game.update({rating: averageRating})
+    }
+  })
   if(req.session.auth){
     const { userId } = req.session.auth;
 
     /* fetch and display random game from databse for pseudo recommendation */
-    const allGames = await Game.findAll();
     let min = Math.ceil(1);
     let max = Math.floor(allGames.length+1);
     const randomGameId = Math.floor(Math.random() * (max - min) + min);
@@ -34,6 +45,7 @@ router.get('/', asyncHandler(async (req, res, next) => {
       order: [Sequelize.fn( 'RANDOM' ),],
       include: {model:User},
     });
+
     const reviewWithGame = await Review.findOne({where: {id:reviewWithUser.id}, include:{model:Game}});
 
     console.log(reviewWithUser);
