@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&family=Ramabhadra&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap');
 
 .anon-home-container{
   display: flex;
@@ -13,8 +13,12 @@
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 50px;
+  padding-bottom:20px;
   font-family: 'Raleway', sans-serif;
   font-weight: bold;
+  border-bottom: solid 2px #7D8CA3;
+  width: 700px;
+  text-align: center;
 }
 
 .anon-home-p-section{
@@ -30,6 +34,7 @@
 .anon-home-p{
   font-size: 12px;
   font-weight: normal;
+  max-width: 400px;
 }
 
 .scroll-container{

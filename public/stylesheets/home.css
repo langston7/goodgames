@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&family=Ramabhadra&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap');
 
 
 .index-body-container{
@@ -69,12 +69,12 @@
   border-radius: 5px;
   padding: 20px;
   font-size: 12px;
-  font-family: 'Merriweather', serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 .index-review-name{
   font-size: 12px;
-  font-family: 'Merriweather', serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 .index-review-image{
@@ -86,7 +86,7 @@
 .index-review-rating{
   margin-top: 10px;
   font-size: 12px;
-  font-family: 'Merriweather', serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 .index-review-content{

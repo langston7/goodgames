@@ -6,6 +6,7 @@ const { loginUser, logoutUser } = require('../auth');
 const bcrypt = require('bcryptjs')
 const { csrfProtection, asyncHandler } = require('../utils');
 const { Op } = require('sequelize');
+const { Sequelize } = require('sequelize');
 
 /* GET home page. */
 router.get('/', asyncHandler(async (req, res, next) => {
@@ -29,13 +30,14 @@ router.get('/', asyncHandler(async (req, res, next) => {
     }
 
     /* fetch and display a random review */
-    const allReviews = await Review.findAll();
-    min = Math.ceil(1);
-    max = Math.floor(allReviews.length+1);
-    const randomReviewId = Math.floor(Math.random() * (max - min) + min);
-    const reviewWithUser = await Review.findOne({where: {id:randomReviewId}, include: {model:User}});
-    const reviewWithGame = await Review.findOne({where: {id:randomReviewId}, include: {model:Game}});
+    const reviewWithUser = await Review.findOne({
+      order: [Sequelize.fn( 'RANDOM' ),],
+      include: {model:User},
+    });
+    const reviewWithGame = await Review.findOne({where: {id:reviewWithUser.id}, include:{model:Game}});
 
+    console.log(reviewWithUser);
+    console.log(reviewWithUser.id);
 
     res.render('home', { title: 'a/A Express Skeleton Home', game, currImgURL, currGameId, reviewWithUser, reviewWithGame });
   } else {
