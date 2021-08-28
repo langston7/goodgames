@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&family=Ramabhadra&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 body {
     background-color:#dbdce0;
@@ -95,7 +96,7 @@ a:not(.nav-container a){
 
 .nav-link {
     font-size: 24px;
-    font-family: 'Ramabhadra', sans-serif;
+    font-family: 'Poppins', sans-serif;
     text-decoration: none;
     padding: 0 10px;
     transition: background-color .3s;
@@ -111,7 +112,7 @@ a:not(.nav-container a){
     justify-content: flex-end;
     height: 100%;
     align-items: center;
-    padding-top: 6px;
+    padding-top: 3px;
 }
 
 .user-link {

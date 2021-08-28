@@ -15,19 +15,28 @@ module.exports = {
       'I would play it again I def recommend',
       'The game was kind of boring to me',
       'The artwork and gameplay was amazing'
-  ]
-    const values = []
-    for (let i = 1; i <= 17; i++) {
+  ];
+    const values = [];
+    let reviewNum = 1;
+    let gameNum = 1;
+    let userNum = 2;
+    for (let i = 1; i <= 41; i++) {
+      if (reviewNum >= reviewValues.length) {reviewNum = 1};
+      if (gameNum >= 17) {gameNum = 1};
+      if (userNum >= 7) {userNum = 2};
+      let randomRating = Math.floor(Math.random() * (5 - 1) + 1);
       values.push({
-        content:reviewValues[i],
-        gameId:i,
-        userId:i,
-        rating:'1'
-      }
-      )
+        content:reviewValues[reviewNum],
+        gameId:gameNum,
+        userId:userNum,
+        rating:randomRating
+      });
+      reviewNum++;
+      gameNum++;
+      userNum++;
     }
       return queryInterface.bulkInsert('Reviews', values , {});
-    
+
   },
 
   down: async (queryInterface, Sequelize) => {
