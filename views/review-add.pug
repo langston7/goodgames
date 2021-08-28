@@ -1,8 +1,8 @@
 extends layout
 
 append head
-    link(rel="stylesheet" href="/stylesheets/review.css")
-
+  link(rel="stylesheet" href="/stylesheets/review.css")
+  link(rel="stylesheet" href="/stylesheets/error-styling.css")
 
 block content
 
@@ -10,20 +10,21 @@ block content
   div(class="review-container")
     form(action=`/games/${games.id}/reviews` method="post" class="review-form")
       if errors
-          div(role='alert')
-            p The Following errors occurred:
-            ul
+          div(role='alert' class="error-container")
+            p(class="error-header") There's an error with your submission:
+            ul(class="error-list")
               each error in errors
-                li= error
+                li(class="error-li")= error
       div(class="top-row")
         div(class="img-div")
-          img(class="game-img" src= games.imgURL) 
-          if games.rating === null 
-            div(class="rating-average") Rating: Unrated 
+          img(class="game-img" src= games.imgURL)
+          if games.rating === null
+            div(class="rating-average") Rating: Unrated
           else
             div(class="rating-average") Rating: #{games.rating}/5
         div(class="game-content")
           h2(class='game-title') #{games.name}
+          a(href=`/games/${games.id}` id="return-link") Back to game
           span(class='releaseDate') Release Date: #{games.releaseDate.toLocaleDateString()}
           span(class='developer') Developer: #{games.developer}
       div(class="bottom-row")
@@ -31,70 +32,70 @@ block content
           h1(class="review-welcome") Give us your review
             div(class="rate")
               if review.rating === '5'
-                input(type="radio" id="star5" name="rating" value="5" checked)           
+                input(type="radio" id="star5" name="rating" value="5" checked)
                 label(for="star5" title="text">5 stars)
-                input(type="radio" id="star4" name="rating" value="4")             
+                input(type="radio" id="star4" name="rating" value="4")
                 label(for="star4" title="text">4 stars)
-                input(type="radio" id="star3" name="rating" value="3")             
+                input(type="radio" id="star3" name="rating" value="3")
                 label(for="star3" title="text">3 stars)
-                input(type="radio" id="star2" name="rating" value="2")             
+                input(type="radio" id="star2" name="rating" value="2")
                 label(for="star2" title="text">2 stars)
-                input(type="radio" id="star1" name="rating" value="1")             
+                input(type="radio" id="star1" name="rating" value="1")
                 label(for="star1" title="text">1 star)
               if review.rating === '4'
-                input(type="radio" id="star5" name="rating" value="5")           
+                input(type="radio" id="star5" name="rating" value="5")
                 label(for="star5" title="text">5 stars)
-                input(type="radio" id="star4" name="rating" value="4" checked)             
+                input(type="radio" id="star4" name="rating" value="4" checked)
                 label(for="star4" title="text">4 stars)
-                input(type="radio" id="star3" name="rating" value="3")             
+                input(type="radio" id="star3" name="rating" value="3")
                 label(for="star3" title="text">3 stars)
-                input(type="radio" id="star2" name="rating" value="2")             
+                input(type="radio" id="star2" name="rating" value="2")
                 label(for="star2" title="text">2 stars)
-                input(type="radio" id="star1" name="rating" value="1")             
+                input(type="radio" id="star1" name="rating" value="1")
                 label(for="star1" title="text">1 star)
               if review.rating === '3'
-                input(type="radio" id="star5" name="rating" value="5")           
+                input(type="radio" id="star5" name="rating" value="5")
                 label(for="star5" title="text">5 stars)
-                input(type="radio" id="star4" name="rating" value="4")             
+                input(type="radio" id="star4" name="rating" value="4")
                 label(for="star4" title="text">4 stars)
-                input(type="radio" id="star3" name="rating" value="3" checked)             
+                input(type="radio" id="star3" name="rating" value="3" checked)
                 label(for="star3" title="text">3 stars)
-                input(type="radio" id="star2" name="rating" value="2")             
+                input(type="radio" id="star2" name="rating" value="2")
                 label(for="star2" title="text">2 stars)
-                input(type="radio" id="star1" name="rating" value="1")             
+                input(type="radio" id="star1" name="rating" value="1")
                 label(for="star1" title="text">1 star)
               if review.rating === '2'
-                input(type="radio" id="star5" name="rating" value="5")           
+                input(type="radio" id="star5" name="rating" value="5")
                 label(for="star5" title="text">5 stars)
-                input(type="radio" id="star4" name="rating" value="4")             
+                input(type="radio" id="star4" name="rating" value="4")
                 label(for="star4" title="text">4 stars)
-                input(type="radio" id="star3" name="rating" value="3")             
+                input(type="radio" id="star3" name="rating" value="3")
                 label(for="star3" title="text">3 stars)
-                input(type="radio" id="star2" name="rating" value="2" checked)             
+                input(type="radio" id="star2" name="rating" value="2" checked)
                 label(for="star2" title="text">2 stars)
-                input(type="radio" id="star1" name="rating" value="1")             
+                input(type="radio" id="star1" name="rating" value="1")
                 label(for="star1" title="text">1 star)
               if review.rating === '1'
-                input(type="radio" id="star5" name="rating" value="5")           
+                input(type="radio" id="star5" name="rating" value="5")
                 label(for="star5" title="text">5 stars)
-                input(type="radio" id="star4" name="rating" value="4")             
+                input(type="radio" id="star4" name="rating" value="4")
                 label(for="star4" title="text">4 stars)
-                input(type="radio" id="star3" name="rating" value="3")             
+                input(type="radio" id="star3" name="rating" value="3")
                 label(for="star3" title="text">3 stars)
-                input(type="radio" id="star2" name="rating" value="2")             
+                input(type="radio" id="star2" name="rating" value="2")
                 label(for="star2" title="text">2 stars)
-                input(type="radio" id="star1" name="rating" value="1" checked)             
+                input(type="radio" id="star1" name="rating" value="1" checked)
                 label(for="star1" title="text">1 star)
               if review.rating === undefined
-                input(type="radio" id="star5" name="rating" value="5")           
+                input(type="radio" id="star5" name="rating" value="5")
                 label(for="star5" title="text">5 stars)
-                input(type="radio" id="star4" name="rating" value="4")             
+                input(type="radio" id="star4" name="rating" value="4")
                 label(for="star4" title="text">4 stars)
-                input(type="radio" id="star3" name="rating" value="3")             
+                input(type="radio" id="star3" name="rating" value="3")
                 label(for="star3" title="text">3 stars)
-                input(type="radio" id="star2" name="rating" value="2")             
+                input(type="radio" id="star2" name="rating" value="2")
                 label(for="star2" title="text">2 stars)
-                input(type="radio" id="star1" name="rating" value="1")             
+                input(type="radio" id="star1" name="rating" value="1")
                 label(for="star1" title="text">1 star)
           textarea(class="review-box" name="content") #{review.content}
           button(class="review-submit") Submit

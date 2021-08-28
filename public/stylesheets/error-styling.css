@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
+
+.error-container{
+  background-color: rgba(231, 105, 105, 0.404);
+  margin: 20px;
+  padding: 20px;
+  padding-top: 5px;
+  border-radius: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bolder;
+  border: ridge 3px red
+}
+
+.error-header{
+  color: rgb(0, 0, 0);
+}
+
+.error-list{
+  padding-left:20px;
+  color: rgb(0, 0, 0);
+}
+
+.error-li{
+  font-size: 12px;
+}
