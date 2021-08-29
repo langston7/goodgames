@@ -2,7 +2,7 @@ extends layout
 
 append head
     link(rel="stylesheet" href="/stylesheets/review.css")
-
+    link(rel="stylesheet" href="/stylesheets/error-styling.css")
 
 block content
 
@@ -10,11 +10,11 @@ block content
   div(class="review-container")
     form(action=`/games/${games.id}/reviews/${review.id}/edit` method="post" class="review-form-edit")
       if errors
-          div(role='alert')
-            p The Following errors occurred:
-            ul
+          div(role='alert' class="error-container")
+            p(class="error-header") The Following errors occurred:
+            ul(class="error-list")
               each error in errors
-                li= error
+                li(class="error-li")= error
       div(class="top-row")
         div(class="img-div")
           img(class="game-img" src= games.imgURL) 

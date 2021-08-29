@@ -98,8 +98,30 @@
   font-size: 20px;
 }
 
+.shelf-input {
+  border-radius: 3px;
+  border: 1px solid gray;
+  padding: 5px;
+}
+
+.shelf-input:focus {
+  outline: none;
+}
+
 .shelf-button{
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 15px;
+  border-radius: 20px;
+  border: none;
+  background-color: rgb(255, 105, 51);
+  width: fit-content;
+  color:white;
+  padding: 5px 15px;
+  margin-top: 5px;
+}
+
+.shelf-button:hover {
+  cursor: pointer;
 }
 
 .delete-button,

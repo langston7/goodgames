@@ -22,7 +22,8 @@ document.addEventListener("DOMContentLoaded", event => {
       const divPlayedLi = [...document.querySelectorAll('.played-status li')];
       const divPlayedStatusContents = divPlayedLi.map(li => li.innerText)
 
-      if (!divPlayedStatusContents.includes(selectedShelf.value)) {
+      if (!divPlayedStatusContents.includes(selectedShelf.value) && selectedShelf.value) {
+        console.log(selectedShelf.value);
         const successMessage = document.createElement('div');
         successMessage.innerText = `Added to ${selectedShelf.value} shelf`;
         successMessage.setAttribute('class', 'success-message')
