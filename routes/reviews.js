@@ -2,9 +2,11 @@ const express = require('express');
 const router = express.Router();
 const { Game, Review } = require('../db/models')
 const { check, validationResult } = require('express-validator');
-const { loginUser, logoutUser } = require('../auth');
+const { loginUser, logoutUser, requireAuth } = require('../auth');
 const bcrypt = require('bcryptjs')
 const { csrfProtection, asyncHandler } = require('../utils');
+
+router.use(requireAuth);
 
 //get
 router.get('/games/:id(\\d+)/reviews/new', asyncHandler(async (req, res) => {

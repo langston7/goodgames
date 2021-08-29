@@ -3,6 +3,7 @@ div(class="game-info-container")
     img(class='gameImage-info' src= game.imgURL)
     if gameshelves
       select(class='game-shelf-dropdown')
+        option(value="" disabled selected class="select-placeholder") Select shelf:
         each shelf in gameshelves
           option(data-id=shelf.id data-gameid=game.id value=shelf.name) #{shelf.name}
       button(class='add-to-game-shelf-button') Add
