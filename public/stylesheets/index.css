@@ -27,6 +27,36 @@ a:not(.nav-container a){
     height: 75px;
     width: 100%;
     background-color: #7D8CA3;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.footer-container {
+    background-color: #7D8CA3;
+    height: 40px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.github-logo {
+    width: 50px;
+    height: 50px;
+    background-image: url('../images/GitHub-Mark-32px.png');
+    background-position: center;
+    background-size: auto;
+    background-repeat: no-repeat;
+}
+
+.github-link,
+.dev-link,
+.creators {
+    margin: 0 10px;
+    color: black;
 }
 
 .content-container {
