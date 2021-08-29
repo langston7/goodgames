@@ -45,15 +45,19 @@ document.addEventListener("DOMContentLoaded", event => {
       const shelfNameArray = currentTextArray.slice(0, (currentTextArray.length - 1))
       const shelfName = shelfNameArray.join(' ');
       const numberWithParentheses = currentTextArray[currentTextArray.length - 1].split('');
-      const number = parseInt(numberWithParentheses[1], 10);
+      numberWithParentheses.shift();
+      numberWithParentheses.pop();
+      const number = parseInt(numberWithParentheses.join(''), 10);
 
       const allLink = document.querySelector('.all-link');
-      const allLinkText = allLink.innerText;
-      const allLinkTextArray = allLinkText.split(' ');
-      const allLinkNameArray = allLinkTextArray.slice(0, (currentTextArray.length - 1))
-      const allLinkName = allLinkNameArray[0];
-      const allLinkNumberWithParentheses = allLinkTextArray[allLinkTextArray.length - 1].split('');
-      const allLinkNumber = parseInt(allLinkNumberWithParentheses[1], 10);
+      const allLinkText = allLink.innerText; // All (12)
+      const allLinkTextArray = allLinkText.split(' '); // [All, (12)]
+      const allLinkNameArray = allLinkTextArray.slice(0, (currentTextArray.length - 1)) // [All]
+      const allLinkName = allLinkNameArray[0]; // All
+      const allLinkNumberWithParentheses = allLinkTextArray[allLinkTextArray.length - 1].split(''); // ['(', '1', '2', ')']
+      allLinkNumberWithParentheses.shift(); // ['1', '2', ')']
+      allLinkNumberWithParentheses.pop(); // ['1', '2']
+      const allLinkNumber = parseInt(allLinkNumberWithParentheses.join(''), 10);
 
       targetLink.innerText = `${shelfName} (${number - 1})`;
       allLink.innerText = `${allLinkName} (${allLinkNumber - 1})`
