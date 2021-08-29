@@ -1,7 +1,7 @@
 div(class="user-review-container")
   div(class="top-row")
     h2(class="user-reviews-title") Your Review
-    form(action=`/games/${game.id}/reviews/${userReview.id}/edit` method='POST' class='edit-review-button')
+    form(action=`/games/${game.id}/reviews/${userReview.id}/edit` method='GET' class='edit-review-button')
       button(class="edit-review-button") Edit
     form(action=`/games/${game.id}/reviews/${userReview.id}/delete` method='POST' class='delete-review-button')
       button(class="delete-review-button") Delete
