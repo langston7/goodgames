@@ -9,8 +9,9 @@
 }
 
 .card-container{
-  border-bottom: solid 2px #7D8CA3;
+  border-bottom: solid 2px #a3a2ad;
   margin: 0 auto;
+  width: 800px;
 }
 
 .game-info-container{

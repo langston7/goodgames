@@ -24,12 +24,5 @@ block content
           div(class="index-review-name") #{reviewWithUser.User.username} recently played #{reviewWithGame.Game.name}
           img(class="index-review-image" src=reviewWithGame.Game.imgURL)
           div(class="index-review-rating") #{reviewWithUser.User.username}'s Rating: #{reviewWithUser.rating}/5
-          p(class="index-review-content") #{reviewWithUser.User.username}'s Review: #{reviewWithUser.content}
-      div(class="site-info")
-        ul(class="index-devs") DEVELOPERS
-          li Jason
-          li Eric
-          li Lee
-          li Daniel
-        ul(class="index-links") CONTACT
-          li About Us
+          p(class="index-review-content") #{reviewWithUser.User.username}'s Review:
+          p(class="index-review-content") #{reviewWithUser.content}
