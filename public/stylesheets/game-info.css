@@ -25,6 +25,10 @@
   flex-direction: column;
 }
 
+.game-info-description{
+  font-size: 14px;
+}
+
 .gameImage-info {
   width: 100%;
 }
@@ -54,6 +58,16 @@
   justify-content: space-between;
 }
 
+.releaseDate{
+  font-size: 12px;
+}
+.developer{
+  font-size: 12px;
+}
+.rating{
+  font-size: 12px;
+}
+
 .played-status {
   display: flex;
   justify-content: flex-end;
@@ -77,7 +91,7 @@
 .game-info-header {
   font-weight: bold;
   font-size: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 16px;
 }
 
 .played-status {
