@@ -12,7 +12,8 @@ block content
       if !currGameId
         div You're currently not playing anything.
       div(class="index-currently-playing")
-      a(href=href=`games/${currGameId}`): img(class="currImage-tag" src=currImgURL)
+      if currGameId
+        a(href=href=`games/${currGameId}`): img(class="currImage-tag" src=currImgURL)
     div(class="index-middle-container")
       div(class="reccommendations")
         h2(class="index-header") RECOMMENDED FOR YOU
