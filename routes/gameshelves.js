@@ -28,16 +28,24 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async(req, res, next) => {
   const shelves = await GameShelf.findAll({where: {userId}, include: Game, order: [['id']]});
   const shelf = await GameShelf.findOne({where: {id: shelfId}, include: Game})
 
-  if (shelf.userId === userId) {
-    const nestedGames = [];
-    shelves.forEach(shelf => nestedGames.push(shelf.Games))
-    const allUserGames = nestedGames.flat();
-    const shelfGames = shelf.Games;
-    res.render('gameshelf-info', { shelves, allUserGames, shelfGames })
-  } else {
+  // Error handling:
+  // 1st condition - trying to go to a shelf that doesn't exist
+  // 2nd condition - trying to go to a shelf owned by another user
+  // 3rd condition - trying to go to an existing shelf the current user owns
+  if (!shelf) {
+    const error = new Error('How\'d you get here? This page doesn\'t exist.');
+    error.status = 404;
+    next(error);
+  } else if (shelf.userId !== userId){
     const err = new Error('Unauthorized request');
     err.status = 403;
     next(err);
+  } else {
+    const nestedGames = [];
+    shelves.forEach(shelf => nestedGames.push(shelf.Games));
+    const allUserGames = nestedGames.flat();
+    const shelfGames = shelf.Games;
+    res.render('gameshelf-info', { shelves, allUserGames, shelfGames });
   }
 }));
 

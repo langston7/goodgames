@@ -2,5 +2,9 @@ extends layout
 
 block content
   h1= message
-  h2= error.status
+  if error.status === 404
+    h2 #{error.status} Not Found
+  else
+    h2= error.status
+  a(href="/") Back to home
   pre #{error.stack}

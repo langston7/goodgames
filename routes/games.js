@@ -11,14 +11,21 @@ router.get('/', asyncHandler(async (req, res) => {
     res.render('games', { games });
 }));
 
-router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
+router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     const gameId = parseInt(req.params.id, 10);
     const game = await Game.findByPk(gameId);
+    
+    if (!game) {
+        const error = new Error('How\'d you get here? This page doesn\'t exist.');
+        error.status = 404;
+        next(error);
+    }
+    
     let reviews = await Review.findAll({
         where: { gameId },
         include: User
     });
- 
+    
     if (req.session.auth) {
         const { userId } = req.session.auth;
         const gameshelves = await GameShelf.findAll({where: {userId}});

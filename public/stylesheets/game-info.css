@@ -19,7 +19,7 @@
 
 .img-div {
   width: 200px;
-  height: 200px;
+  height: fit-content;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -31,6 +31,13 @@
 
 .gameImage-info {
   width: 100%;
+}
+
+.game-shelf-dropdown {
+  margin-top: 5px;
+  max-width: 149px;
+  border-radius: 3px;
+  padding: 3px;
 }
 
 .game-content {
