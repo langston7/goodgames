@@ -36,6 +36,10 @@
   padding: 3px;
 }
 
+.game-shelf-dropdown:focus {
+  outline: none;
+}
+
 .game-content {
   display: flex;
   flex-direction: column;
@@ -51,7 +55,7 @@
 .game-header {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .played-status {
