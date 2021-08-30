@@ -48,9 +48,6 @@ router.get('/', asyncHandler(async (req, res, next) => {
 
     const reviewWithGame = await Review.findOne({where: {id:reviewWithUser.id}, include:{model:Game}});
 
-    console.log(reviewWithUser);
-    console.log(reviewWithUser.id);
-
     res.render('home', { title: 'a/A Express Skeleton Home', game, currImgURL, currGameId, reviewWithUser, reviewWithGame });
   } else {
     const games = await Game.findAll();

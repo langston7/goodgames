@@ -149,7 +149,6 @@ a:not(.nav-container a){
     font-family: 'Rajdhani', sans-serif;
     text-decoration: none;
     border-radius: 5px;
-    /* padding: 0 10px; */
     font-size: 20px;
     font-weight: bolder;
     transition: background-color .3s;

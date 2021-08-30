@@ -100,12 +100,9 @@ router.post('/:id(\\d+)/games', asyncHandler(async(req,res) => {
     }
   });
 
-  // console.log(shelves);
-  // console.log(JSON.stringify(shelves[0].Games, null, 2));
   let hasGame = false;
 
   shelf.Games.forEach(game => {
-    console.log(gameId, game);
     if (game.id === gameId) {
       hasGame = true;
     }

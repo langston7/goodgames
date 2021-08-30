@@ -32,13 +32,6 @@ document.addEventListener("DOMContentLoaded", event => {
         method: "DELETE",
       });
 
-
-
-      // const res = await fetch(`/gameshelves/api/${shelfId}`);
-      // const resObj = await res.json();
-      // console.log(resObj);
-      // const shelfName = resObj.shelfName;
-
       const targetLink = document.querySelector('#currently-visiting');
       const currentText = targetLink.innerText;
       const currentTextArray = currentText.split(' ');
