@@ -15,15 +15,11 @@ document.addEventListener("DOMContentLoaded", event => {
           "Content-Type": "application/json"
         },
       });
-      // const resObject = await res.json();
-      // const ownedShelves = resObject.ownedShelves
       const playedStatusList = document.querySelector('.played-status-list')
-      // check the current contents of the played-status div
       const divPlayedLi = [...document.querySelectorAll('.played-status li')];
       const divPlayedStatusContents = divPlayedLi.map(li => li.innerText)
 
       if (!divPlayedStatusContents.includes(selectedShelf.value) && selectedShelf.value) {
-        console.log(selectedShelf.value);
         const successMessage = document.createElement('div');
         successMessage.innerText = `Added to ${selectedShelf.value} shelf`;
         successMessage.setAttribute('class', 'success-message')
@@ -39,7 +35,6 @@ document.addEventListener("DOMContentLoaded", event => {
           successMessage.remove();
         }, 2100)
 
-        //TODO: add selectedShelf.value to playedStatusList dynamically
         const li = document.createElement('li');
         li.innerText = selectedShelf.value;
         playedStatusList.appendChild(li);
