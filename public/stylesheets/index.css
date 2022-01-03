@@ -4,12 +4,14 @@
 
 body {
     background-color:#dbdce0;
+    padding-bottom: 50px;
 }
 
 .body-content {
     max-width: 1220px;
     margin: 0 auto;
     font-family: 'Ramabhadra', sans-serif;
+    padding-bottom: 50px;
 }
 
 a:not(.nav-container a){
